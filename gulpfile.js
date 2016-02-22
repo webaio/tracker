@@ -13,97 +13,87 @@ var gulp        = require('gulp'),
 
 
 // =======================================================================//
-// Coding standards												          //
+// Coding standards                                                       //
 // =======================================================================//
 
 gulp.task('lint', function() {
-	return gulp.src([
-			__dirname + '/src/**/*.ts',
-			__dirname + '/test/**/*.test.ts'
-		])
-		.pipe(tslint())
-		.pipe(tslint.report('verbose'));
-});
+    return gulp.src([
+            __dirname + '/src/**/*.ts',
+            __dirname + '/test/**/*.test.ts'
+        ])
+        .pipe(tslint())
+        .pipe(tslint.report('verbose'));
+    });
 
 // =======================================================================//
-// Clean														          //
-// =======================================================================//
-
-gulp.task('clean', function(cb) {
-  del(['.tmp', 'dist'], cb);
-});
-
-// =======================================================================//
-// Compile														          //
+// Compile                                                                //
 // =======================================================================//
 
 var tsProject = tsc.createProject('tsconfig.json');
 
 gulp.task('compile-src', function() {
-	return gulp.src(__dirname + '/src/**/*.ts')
-		.pipe(tsc(tsProject))
-		.js.pipe(gulp.dest(__dirname + '/.tmp/src/'));
-});
+    return gulp.src(__dirname + '/src/**/*.ts')
+        .pipe(tsc(tsProject))
+        .js.pipe(gulp.dest(__dirname + '/.tmp/src/'));
+    });
 
 var tsTestProject = tsc.createProject('tsconfig.json');
 
 gulp.task('compile-test', function() {
-  	return gulp.src(__dirname + '/test/**/*.ts')
-		.pipe(tsc(tsTestProject))
-		.js.pipe(gulp.dest(__dirname + '/.tmp/test/'));
-});
+    return gulp.src(__dirname + '/test/**/*.ts')
+        .pipe(tsc(tsTestProject))
+        .js.pipe(gulp.dest(__dirname + '/.tmp/test/'));
+    });
 
 gulp.task('compile', function(cb) {
-  	runSequence('compile-src', 'compile-test', cb);
+    runSequence('compile-src', 'compile-test', cb);
 });
 
 // =======================================================================//
-// Build														          //
+// Build                                                                  //
 // =======================================================================//
 
 gulp.task('bundle', function () {
-  	var b = browserify({
-	    standalone : 'weba',
-	    entries: __dirname + '/.tmp/src/weba.js',
-	    debug: true
-  	});
+    var b = browserify({
+        standalone : 'weba',
+        entries: __dirname + '/.tmp/src/weba.js',
+        debug: true
+    });
 
-  	return b.bundle()
-		.pipe(source('weba.js'))
-		.pipe(buffer())
-		.pipe(uglify({ preserveComments : false }))
-		.pipe(rename({ extname: '.min.js' }))
-		.pipe(gulp.dest(__dirname + '/dist/'));
-});
+    return b.bundle()
+        .pipe(source('weba.js'))
+        .pipe(buffer())
+        .pipe(uglify({ preserveComments : false }))
+        .pipe(rename({ extname: '.min.js' }))
+        .pipe(gulp.dest(__dirname + '/dist/'));
+    });
 
 gulp.task('build', function(cb) {
-  	runSequence('compile', 'bundle', cb);
+    runSequence('compile', 'bundle', cb);
 });
 
 // =======================================================================//
-// Tests														          //
+// Tests                                                                  //
 // =======================================================================//
 
 gulp.task('mocha', function() {
-  	return gulp.src('.tmp/test/**/*.test.js')
-	    .pipe(mocha({ui: 'bdd'}))
-	    .pipe(istanbul.writeReports());
-});
+    return gulp.src('.tmp/test/**/*.test.js')
+        .pipe(mocha({ui: 'bdd'}))
+        .pipe(istanbul.writeReports());
+    });
 
 gulp.task('istanbul:hook', function() {
-  	return gulp.src(['.tmp/src/**/*.js'])
-		// Covering files
-		.pipe(istanbul())
-		// Force `require` to return covered files
-		.pipe(istanbul.hookRequire());
-});
+    return gulp.src(['.tmp/src/**/*.js'])
+        .pipe(istanbul())
+        .pipe(istanbul.hookRequire());
+    });
 
 gulp.task('cover', function() {
-  	if (!process.env.CI) return;
-  	return gulp.src('coverage/**/lcov.info')
-      	.pipe(coveralls());
-});
+    if (!process.env.CI) return;
+    return gulp.src('coverage/**/lcov.info')
+        .pipe(coveralls());
+    });
 
 gulp.task('test', function(cb) {
-  	runSequence('build', 'istanbul:hook', 'mocha', 'cover', cb);
+    runSequence('build', 'istanbul:hook', 'mocha', 'cover', cb);
 });

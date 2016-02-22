@@ -4,11 +4,10 @@ import { expect } from 'chai';
 import { Kernel } from '../../../src/weba';
 
 describe('Kernel', () => {
+    it('should contain an array', (done) => {
+        let kernel = new Kernel();
 
-	it('should contain an array', (done) => {
-		var kernel = new Kernel();
-
-		expect(kernel.getDeps()).to.be.instanceof(Array);
-		done();
-	});
+        expect(kernel.getDeps()).to.be.instanceof(Array);
+        done();
+    });
 });

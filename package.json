@@ -8,7 +8,8 @@
   "scripts": {
     "test": "gulp test",
     "build": "gulp build",
-    "lint": "gulp lint"
+    "lint": "gulp lint",
+    "deploy": "gulp build && cp /tracker/dist/weba.min.js /html/dist/weba.min.js"
   },
   "devDependencies": {
     "browserify": "13.0.0",

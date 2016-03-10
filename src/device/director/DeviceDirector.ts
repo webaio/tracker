@@ -1,5 +1,5 @@
-import {DeviceBuilder} from "../builder/DeviceBuilder";
-import {Device} from "../Device";
+import {DeviceBuilder} from '../builder/DeviceBuilder';
+import {Device} from '../Device';
 
 export class DeviceDirector {
     private deviceBuilder: DeviceBuilder;

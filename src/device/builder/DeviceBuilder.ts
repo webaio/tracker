@@ -4,5 +4,5 @@ export interface DeviceBuilder {
     buildHeight();
     buildAvailableWidth();
     buildAvailableHeight();
-    getDevice():Device;
+    getDevice(): Device;
 }

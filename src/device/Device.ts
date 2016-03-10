@@ -1,6 +1,6 @@
-export interface Device {
-    setWidth(width: number);
-    setHeight(height: number);
-    setAvailableWidth(availableWidth: number);
-    setAvailableHeight(availableHeight: number);
+export class Device {
+    public width: number;
+    public height: number;
+    public availableWidth: number;
+    public availableHeight: number;
 }

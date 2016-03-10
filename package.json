@@ -6,6 +6,7 @@
   "author": "hejtercode",
   "license": "ISC",
   "scripts": {
+    "pretest": "gulp lint",
     "test": "gulp test",
     "build": "gulp build",
     "lint": "gulp lint",

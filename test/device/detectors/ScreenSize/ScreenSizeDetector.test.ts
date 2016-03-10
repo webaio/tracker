@@ -1,8 +1,8 @@
-///<reference path="../../../typings/main.d.ts" />
+///<reference path="../../../../typings/main.d.ts" />
 
 import { expect } from 'chai';
-import { ScreenSizeDetector } from '../../../src/device/detectors/ScreenSizeDetector';
-import * as Mocks from './detectors.mock';
+import { ScreenSizeDetector } from '../../../../src/device/detectors/ScreenSize/ScreenSizeDetector';
+import * as Mocks from '../detectors.mock';
 
 describe('ScreenSizeDetector', () => {
     it('should properly return screens available width', (done) => {

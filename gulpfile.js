@@ -22,8 +22,10 @@ gulp.task('lint', function() {
             __dirname + '/test/**/*.test.ts'
         ])
         .pipe(tslint())
-        .pipe(tslint.report('verbose'));
-    });
+        .pipe(tslint.report('verbose', {
+            emitError: false
+        }));
+});
 
 // =======================================================================//
 // Compile                                                                //

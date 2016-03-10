@@ -1,5 +1,4 @@
 import { Device } from '../../../src/device/Device';
-import { DeviceImpl} from '../../../src/device/DeviceImpl';
 
 interface DeviceBuilder {
     buildWidth();
@@ -11,9 +10,11 @@ interface DeviceBuilder {
 
 export class DeviceBuilderImpl implements DeviceBuilder {
     private device: Device;
+
     constructor(){
-        this.device = new DeviceImpl();
+        this.device = new Device();
     }
+
     buildWidth(){};
     buildHeight(){};
     buildAvailableWidth(){};

@@ -1,30 +1,30 @@
 export class UrlDecoder {
     private url: string;
-    
+
     constructor(url: string) {
         this.url = url;
     }
 
     getDomain(): string {
-        let host: string;
+        let domain: string;
         if (this.url.indexOf('//') > -1) {
-            host = this.url.split('/')[2];
+            domain = this.url.split('/')[2];
         } else {
-            host = this.url.split('/')[0];
+            domain = this.url.split('/')[0];
         }
 
-        return host;
+        return domain;
     }
 
-    getParams() {
-        let params = this.getQueryParams(this.url),
+    getParams(): any {
+        let params: string = this.getQueryParams(this.url),
             result: any = {}, param: any;
 
         if (!params) {
             return result;
         }
 
-        let pairs = this.splitParams(params);
+        let pairs: Array<string> = this.splitParams(params);
 
         for (let i = 0; i < pairs.length; i++) {
             param = pairs[i].split('=');
@@ -34,11 +34,11 @@ export class UrlDecoder {
         return result;
     }
 
-    private getQueryParams(src: string) {
+    private getQueryParams(src: string): string {
         return src.replace(/^[^\?]+\??/, '');
     }
 
-    private splitParams(src: string) {
+    private splitParams(src: string): Array<string> {
         return src.split('&');
     }
 }

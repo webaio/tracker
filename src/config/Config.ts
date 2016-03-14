@@ -1,5 +1,5 @@
 export interface Config {
-    domain: String;
-    trackerId: String;
+    domain: string;
+    trackerId: string;
     read(scriptElement: HTMLScriptElement);
 }

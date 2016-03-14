@@ -6,14 +6,7 @@ export class UrlDecoder {
     }
 
     getDomain(): string {
-        let domain: string;
-        if (this.url.indexOf('//') > -1) {
-            domain = this.url.split('/')[2];
-        } else {
-            domain = this.url.split('/')[0];
-        }
-
-        return domain;
+        return '//' + this.url.split('/')[2];
     }
 
     getParams(): any {

@@ -1,19 +1,17 @@
 import { WindowSize } from './WindowSize';
 
 export class WindowSizeDetector implements WindowSize {
-    private window: Window;
+    private global: any;
 
-    constructor(window: any) {
-        this.window = window;
-
+    constructor(global: any) {
+        this.global = global;
     }
 
     getWidth(): number {
-        return this.window.document.documentElement.clientWidth;
+        return this.global.document.documentElement.clientWidth;
     }
 
     getHeight(): number {
-        return this.window.document.documentElement.clientHeight;
+        return this.global.document.documentElement.clientHeight;
     }
-
 }

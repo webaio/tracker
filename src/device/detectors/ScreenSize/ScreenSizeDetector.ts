@@ -1,19 +1,17 @@
 import { ScreenSize } from './ScreenSize';
 
 export class ScreenSizeDetector implements ScreenSize {
-    private window: Window;
+    private global: any;
 
-    constructor(window: any) {
-        this.window = window;
-
+    constructor(global: any) {
+        this.global = global;
     }
 
     getAvailableWidth(): number {
-        return this.window.screen.width;
+        return this.global.screen.width;
     }
 
     getAvailableHeight(): number {
-        return this.window.screen.height;
+        return this.global.screen.height;
     }
-
 }

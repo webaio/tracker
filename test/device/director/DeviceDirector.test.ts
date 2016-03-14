@@ -25,7 +25,7 @@ describe('DeviceDirector', () => {
         done();
     });
 
-    it('should run builder methods property device.width', (done) => {
+    it('should run builders method getDevice properly', (done) => {
         let deviceBuilder = new Mocks.DeviceBuilderImpl();
         let deviceDirector = new DeviceDirector(deviceBuilder);
 

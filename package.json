@@ -7,6 +7,7 @@
   "license": "ISC",
   "scripts": {
     "pretest": "gulp lint",
+    "postinstall": "typings install",
     "test": "gulp test",
     "build": "gulp build",
     "lint": "gulp lint",
@@ -29,6 +30,7 @@
     "sinon": "1.17.3",
     "tslint": "3.4.0",
     "typescript": "1.7.5",
+    "typings": "0.7.9",
     "vinyl-buffer": "1.0.0",
     "vinyl-source-stream": "1.1.0"
   },

@@ -1,18 +1,4 @@
-```
-<!-- weba.io Tracker Code -->
-<script>
-    (function (window, document, dataLayer, trackerId) {
-        var script, tag;
-        
-        window[dataLayer] = window[dataLayer] || [];
-        tag = document.createElement('script');
-        tag.async = true;
-        tag.id = 'weba-tracker';
-        tag.src = '//localhost:3000/dist/weba.min.js?dataLayer=' + dataLayer + '&trackerId=' + trackerId;
-        script = document.getElementsByTagName('script')[0];
-        script.parentNode.insertBefore(tag, script);
-        
-    }(window, document, 'dataLayer', 'TRACKER_ID'));
-</script>
-<!-- weba.io Tracker Code -->
-```
+weba.io tracker
+==============
+[![Build Status](https://travis-ci.org/webaio/tracker.svg?branch=master)](https://travis-ci.org/webaio/tracker)
+[![Coverage Status](https://coveralls.io/repos/github/webaio/tracker/badge.svg?branch=integration-with-travis)](https://coveralls.io/github/webaio/tracker?branch=integration-with-travis)

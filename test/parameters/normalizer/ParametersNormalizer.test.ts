@@ -16,7 +16,9 @@ describe('ParametersNormalizer', () => {
             date: 'test',
             event: 'testE',
             url: 'testU',
-            trackerId: 'WEBA-123'
+            trackerId: 'WEBA-123',
+            isLocalStorage: true,
+            isSessionStorage: false
         };
 
         let normalized: NormalizedParameters = parametersNormalizer.normalize(parameters);
@@ -28,6 +30,8 @@ describe('ParametersNormalizer', () => {
         expect(normalized).to.have.property('e', 'testE');
         expect(normalized).to.have.property('t', 'WEBA-123');
         expect(normalized).to.have.property('u', 'testU');
+        expect(normalized).to.have.property('d11', false);
+        expect(normalized).to.have.property('d12', true);
         done();
     });
 });

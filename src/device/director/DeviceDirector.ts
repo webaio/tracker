@@ -13,6 +13,8 @@ export class DeviceDirector {
         this.deviceBuilder.buildWidth();
         this.deviceBuilder.buildAvailableHeight();
         this.deviceBuilder.buildAvailableWidth();
+        this.deviceBuilder.buildIsLocalStorage();
+        this.deviceBuilder.buildIsSessionStorage();
     }
 
     getDevice(): Device {

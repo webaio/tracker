@@ -1,18 +1,29 @@
 import { DeviceBuilder } from './DeviceBuilder';
 import { Device } from './../Device';
-import { ScreenSize } from '../detectors/ScreenSize/ScreenSize';
-import { WindowSize } from '../detectors/WindowSize/WindowSize';
+import { SessionStorageDetector } from '../detectors/SessionStorage/SessionStorageDetector';
+import { LocalStorageDetector } from '../detectors/LocalStorage/LocalStorageDetector';
+import { WindowSizeDetector } from '../detectors/WindowSize/WindowSizeDetector';
+import { ScreenSizeDetector } from '../detectors/ScreenSize/ScreenSizeDetector';
 
 export class DeviceBuilderImpl implements DeviceBuilder {
     private device: Device;
-    private screenSizeDetector: ScreenSize;
-    private windowSizeDetector: WindowSize;
+    private screenSizeDetector: ScreenSizeDetector;
+    private windowSizeDetector: WindowSizeDetector;
+    private localStorageDetector: LocalStorageDetector;
+    private sessionStorageDetector: SessionStorageDetector;
 
-    constructor(screenSizeDetector: ScreenSize, windowSizeDetector: WindowSize) {
+    constructor(
+        screenSizeDetector: ScreenSizeDetector,
+        windowSizeDetector: WindowSizeDetector,
+        localstorageDetector: LocalStorageDetector,
+        sessionStorageDetector: SessionStorageDetector
+    ) {
         this.device = new Device();
 
         this.screenSizeDetector = screenSizeDetector;
         this.windowSizeDetector = windowSizeDetector;
+        this.localStorageDetector = localstorageDetector;
+        this.sessionStorageDetector = sessionStorageDetector;
     }
 
     buildWidth() {
@@ -29,6 +40,14 @@ export class DeviceBuilderImpl implements DeviceBuilder {
 
     buildAvailableHeight() {
         this.device.availableHeight = this.screenSizeDetector.getAvailableHeight();
+    }
+
+    buildIsLocalStorage() {
+        this.device.isLocalStorage = this.localStorageDetector.isLocalStorage();
+    }
+
+    buildIsSessionStorage () {
+        this.device.isSessionStorage = this.sessionStorageDetector.isSessionStorage();
     }
 
     getDevice(): Device {

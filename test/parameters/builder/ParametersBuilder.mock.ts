@@ -16,7 +16,9 @@ export let deviceDirector = {
             width: 1,
             height: 2,
             availableWidth: 3,
-            availableHeight: 4
+            availableHeight: 4,
+            isLocalStorage: true,
+            isSessionStorage: false
         };
 
         return device;

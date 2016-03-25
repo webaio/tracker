@@ -1,6 +1,4 @@
-import { ScreenSize } from './ScreenSize';
-
-export class ScreenSizeDetector implements ScreenSize {
+export class ScreenSizeDetector {
     private global: any;
 
     constructor(global: any) {

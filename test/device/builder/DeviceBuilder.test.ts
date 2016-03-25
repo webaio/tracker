@@ -5,13 +5,15 @@ import { DeviceBuilderImpl } from '../../../src/device/builder/DeviceBuilderImpl
 import * as Mocks from './DeviceBuilder.mock';
 
 describe('DeviceBuilder', () => {
-    let windowSizeDetector, screenSizeDetector, deviceBuilder;
+    let deviceBuilder;
 
     beforeEach(() => {
-        windowSizeDetector = new Mocks.WindowSizeDetector();
-        screenSizeDetector = new Mocks.ScreenSizeDetector();
-
-        deviceBuilder = new DeviceBuilderImpl(screenSizeDetector, windowSizeDetector);
+        deviceBuilder = new DeviceBuilderImpl(
+            Mocks.screenSizeDetector,
+            Mocks.windowSizeDetector,
+            Mocks.localStorageDetector,
+            Mocks.sessionStorageDetector
+        );
     });
 
     it('should properly build property device.width', (done) => {
@@ -43,6 +45,22 @@ describe('DeviceBuilder', () => {
         let testDevice = deviceBuilder.getDevice();
 
         expect(testDevice).to.have.property('availableHeight', 4);
+        done();
+    });
+
+    it('should properly build property device.isLocalStorage', (done) => {
+        deviceBuilder.buildIsLocalStorage();
+        let testDevice = deviceBuilder.getDevice();
+
+        expect(testDevice).to.have.property('isLocalStorage', true);
+        done();
+    });
+
+    it('should properly build property device.isSessionStorage', (done) => {
+        deviceBuilder.buildIsSessionStorage();
+        let testDevice = deviceBuilder.getDevice();
+
+        expect(testDevice).to.have.property('isSessionStorage', false);
         done();
     });
 });

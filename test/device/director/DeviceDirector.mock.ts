@@ -12,5 +12,7 @@ export class DeviceBuilderImpl implements DeviceBuilder {
     buildHeight(){};
     buildAvailableWidth(){};
     buildAvailableHeight(){};
+    buildIsLocalStorage(){};
+    buildIsSessionStorage(){};
     getDevice(){return this.device};
 }

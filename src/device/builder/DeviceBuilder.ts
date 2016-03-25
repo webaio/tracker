@@ -4,5 +4,7 @@ export interface DeviceBuilder {
     buildHeight();
     buildAvailableWidth();
     buildAvailableHeight();
+    buildIsLocalStorage();
+    buildIsSessionStorage();
     getDevice(): Device;
 }

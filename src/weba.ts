@@ -9,12 +9,12 @@ import { ConfigImpl } from './config/ConfigImpl';
 import { DeviceDirector } from './device/director/DeviceDirector';
 import { DeviceBuilder } from './device/builder/DeviceBuilder';
 import { DeviceBuilderImpl } from './device/builder/DeviceBuilderImpl';
-import { ScreenSize } from './device/detectors/ScreenSize/ScreenSize';
-import { WindowSize } from './device/detectors/WindowSize/WindowSize';
 import { ScreenSizeDetector } from './device/detectors/ScreenSize/ScreenSizeDetector';
 import { WindowSizeDetector } from './device/detectors/WindowSize/WindowSizeDetector';
 import { QueryStringBuilder } from './queryString/builder/QueryStringBuilder';
 import { Ajax } from './request/types/Ajax';
+import { LocalStorageDetector } from './device/detectors/LocalStorage/LocalStorageDetector';
+import { SessionStorageDetector } from './device/detectors/SessionStorage/SessionStorageDetector';
 
 let pageview = {
     event: 'pageview',
@@ -28,8 +28,10 @@ let global: any,
     dataLayer: Array<any>,
     eventHandler: EventHandler,
     config: Config,
-    screenSizeDetector: ScreenSize,
-    windowSizeDetector: WindowSize,
+    screenSizeDetector: ScreenSizeDetector,
+    windowSizeDetector: WindowSizeDetector,
+    localStorageDetector: LocalStorageDetector,
+    sessionStorageDetector: SessionStorageDetector,
     deviceBuilder: DeviceBuilder,
     deviceDirector: DeviceDirector,
     parametersDirector: ParametersDirector,
@@ -54,7 +56,9 @@ ajax = new Ajax();
 requestHandler = new RequestHandler(queryStringBuilder, config, ajax);
 screenSizeDetector = new ScreenSizeDetector(global);
 windowSizeDetector = new WindowSizeDetector(global);
-deviceBuilder = new DeviceBuilderImpl(screenSizeDetector, windowSizeDetector);
+localStorageDetector = new LocalStorageDetector(localStorage);
+sessionStorageDetector = new SessionStorageDetector(sessionStorage);
+deviceBuilder = new DeviceBuilderImpl(screenSizeDetector, windowSizeDetector, localStorageDetector, sessionStorageDetector);
 deviceDirector = new DeviceDirector(deviceBuilder);
 parametersBuilder = new ParametersBuilderImpl(config, global, deviceDirector);
 parametersDirector = new ParametersDirector(parametersBuilder);

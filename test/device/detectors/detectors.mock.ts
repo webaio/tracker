@@ -10,3 +10,8 @@ export let windowMock = {
         }
     }
 };
+
+export let storageProper = {
+    setItem: () => {},
+    removeItem: () => {}
+};

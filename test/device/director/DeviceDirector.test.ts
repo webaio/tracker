@@ -7,7 +7,7 @@ import * as Mocks from './DeviceDirector.mock';
 
 describe('DeviceDirector', () => {
 
-    it('should run all builder methodsh', (done) => {
+    it('should run all builder methods', (done) => {
         let deviceBuilder = new Mocks.DeviceBuilderImpl();
         let deviceDirector = new DeviceDirector(deviceBuilder);
 
@@ -15,6 +15,8 @@ describe('DeviceDirector', () => {
         let heightSpy = sinon.spy(deviceBuilder, 'buildHeight');
         let availableWidthSpy = sinon.spy(deviceBuilder, 'buildAvailableWidth');
         let availableHeightSpy = sinon.spy(deviceBuilder, 'buildAvailableHeight');
+        let isLocalStorageSpy = sinon.spy(deviceBuilder, 'buildIsLocalStorage');
+        let isSessionStorageSpy = sinon.spy(deviceBuilder, 'buildIsSessionStorage');
 
         deviceDirector.buildDevice();
 
@@ -22,6 +24,8 @@ describe('DeviceDirector', () => {
         expect(heightSpy.calledOnce).to.be.true;
         expect(availableWidthSpy.calledOnce).to.be.true;
         expect(availableHeightSpy.calledOnce).to.be.true;
+        expect(isLocalStorageSpy.calledOnce).to.be.true;
+        expect(isSessionStorageSpy.calledOnce).to.be.true;
         done();
     });
 

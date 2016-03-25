@@ -5,8 +5,4 @@ export class Parameters extends Device {
     public date: string;
     public event: string;
     public url: string;
-
-    constructor() {
-        super();
-    }
 }

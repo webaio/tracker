@@ -1,6 +1,4 @@
-import { WindowSize } from './WindowSize';
-
-export class WindowSizeDetector implements WindowSize {
+export class WindowSizeDetector {
     private global: any;
 
     constructor(global: any) {

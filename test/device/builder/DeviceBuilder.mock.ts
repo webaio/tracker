@@ -1,19 +1,22 @@
-export interface WindowSize {
-    getWidth():number;
-    getHeight():number;
-}
+import {WindowSizeDetector} from "../../../src/device/detectors/WindowSize/WindowSizeDetector";
+import {ScreenSizeDetector} from "../../../src/device/detectors/ScreenSize/ScreenSizeDetector";
+import {LocalStorageDetector} from "../../../src/device/detectors/LocalStorage/LocalStorageDetector";
+import {SessionStorageDetector} from "../../../src/device/detectors/SessionStorage/SessionStorageDetector";
 
-export class WindowSizeDetector implements WindowSize {
-    getWidth(){ return 1; };
-    getHeight(){ return 2; };
-}
+export let windowSizeDetector = <WindowSizeDetector> {
+    getWidth: () => { return 1; },
+    getHeight: () => { return 2; }
+};
 
-export interface ScreenSize {
-    getAvailableWidth():number;
-    getAvailableHeight():number;
-}
+export let screenSizeDetector = <ScreenSizeDetector> {
+    getAvailableWidth: () => { return 3; },
+    getAvailableHeight: () => { return 4; }
+};
 
-export class ScreenSizeDetector implements ScreenSize {
-    getAvailableWidth(){ return 3; };
-    getAvailableHeight(){ return 4; };
-}
+export let localStorageDetector = <LocalStorageDetector> {
+    isLocalStorage: () => { return true }
+};
+
+export let sessionStorageDetector = <SessionStorageDetector> {
+    isSessionStorage: () => { return false }
+};

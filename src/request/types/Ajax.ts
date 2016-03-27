@@ -11,10 +11,10 @@ export class Ajax implements Request {
             http = new ActiveXObject('Microsoft.XMLHTTP');
         }
 
-        if(http) {
+        if (http) {
             http.onreadystatechange = () => {
                 if (http.readyState === 4 && http.status === 404) {
-                    console.log('offline tracking in near future');
+                    console.log('offline tracking');
                 }
             };
 
@@ -35,9 +35,7 @@ export class Ajax implements Request {
 
     private setRequest (http, domain, queryString) {
         http.open('SET', domain, true);
-
         http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-
         http.send(queryString);
     }
 

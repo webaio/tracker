@@ -12,7 +12,8 @@ describe('DeviceBuilder', () => {
             Mocks.screenSizeDetector,
             Mocks.windowSizeDetector,
             Mocks.localStorageDetector,
-            Mocks.sessionStorageDetector
+            Mocks.sessionStorageDetector,
+            Mocks.adBlockDetector
         );
     });
 
@@ -61,6 +62,14 @@ describe('DeviceBuilder', () => {
         let testDevice = deviceBuilder.getDevice();
 
         expect(testDevice).to.have.property('isSessionStorage', false);
+        done();
+    });
+
+    it('should properly build property device.isAdBlock', (done) => {
+        deviceBuilder.buildIsAdBlock();
+        let testDevice = deviceBuilder.getDevice();
+
+        expect(testDevice).to.have.property('isAdBlock', true);
         done();
     });
 });

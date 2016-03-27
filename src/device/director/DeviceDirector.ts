@@ -15,6 +15,7 @@ export class DeviceDirector {
         this.deviceBuilder.buildAvailableWidth();
         this.deviceBuilder.buildIsLocalStorage();
         this.deviceBuilder.buildIsSessionStorage();
+        this.deviceBuilder.buildIsAdBlock();
     }
 
     getDevice(): Device {

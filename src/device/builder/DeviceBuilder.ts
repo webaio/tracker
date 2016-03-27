@@ -6,5 +6,6 @@ export interface DeviceBuilder {
     buildAvailableHeight();
     buildIsLocalStorage();
     buildIsSessionStorage();
+    buildIsAdBlock();
     getDevice(): Device;
 }

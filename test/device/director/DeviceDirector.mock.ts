@@ -14,5 +14,6 @@ export class DeviceBuilderImpl implements DeviceBuilder {
     buildAvailableHeight(){};
     buildIsLocalStorage(){};
     buildIsSessionStorage(){};
+    buildIsAdBlock(){};
     getDevice(){return this.device};
 }

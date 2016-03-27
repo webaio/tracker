@@ -9,6 +9,7 @@ export class NormalizedParameters {
     public rd: string;
     public d11: boolean;
     public d12: boolean;
+    public d14: boolean;
 
     initEmpty() {
         this.w = 0;
@@ -21,6 +22,7 @@ export class NormalizedParameters {
         this.rd = '';
         this.d11 = false;
         this.d12 = false;
+        this.d14 = false;
 
         return this;
     }

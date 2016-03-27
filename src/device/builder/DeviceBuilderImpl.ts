@@ -4,6 +4,8 @@ import { SessionStorageDetector } from '../detectors/SessionStorage/SessionStora
 import { LocalStorageDetector } from '../detectors/LocalStorage/LocalStorageDetector';
 import { WindowSizeDetector } from '../detectors/WindowSize/WindowSizeDetector';
 import { ScreenSizeDetector } from '../detectors/ScreenSize/ScreenSizeDetector';
+import { AdBlockDetector } from '../detectors/AdBlock/AdBlockDetector';
+
 
 export class DeviceBuilderImpl implements DeviceBuilder {
     private device: Device;
@@ -11,19 +13,22 @@ export class DeviceBuilderImpl implements DeviceBuilder {
     private windowSizeDetector: WindowSizeDetector;
     private localStorageDetector: LocalStorageDetector;
     private sessionStorageDetector: SessionStorageDetector;
+    private adBlockDetector: AdBlockDetector;
 
     constructor(
         screenSizeDetector: ScreenSizeDetector,
         windowSizeDetector: WindowSizeDetector,
-        localstorageDetector: LocalStorageDetector,
-        sessionStorageDetector: SessionStorageDetector
+        localStorageDetector: LocalStorageDetector,
+        sessionStorageDetector: SessionStorageDetector,
+        adBlockDetector: AdBlockDetector
     ) {
         this.device = new Device();
 
         this.screenSizeDetector = screenSizeDetector;
         this.windowSizeDetector = windowSizeDetector;
-        this.localStorageDetector = localstorageDetector;
+        this.localStorageDetector = localStorageDetector;
         this.sessionStorageDetector = sessionStorageDetector;
+        this.adBlockDetector = adBlockDetector;
     }
 
     buildWidth() {
@@ -48,6 +53,10 @@ export class DeviceBuilderImpl implements DeviceBuilder {
 
     buildIsSessionStorage () {
         this.device.isSessionStorage = this.sessionStorageDetector.isSessionStorage();
+    }
+
+    buildIsAdBlock () {
+        this.device.isAdBlock = this.adBlockDetector.isAdBlock();
     }
 
     getDevice(): Device {

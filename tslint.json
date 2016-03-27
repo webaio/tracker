@@ -57,7 +57,6 @@
     "no-eval": true,
     "no-inferrable-types": false,
     "no-internal-module": false,
-    "no-null-keyword": true,
     "no-require-imports": false,
     "no-shadowed-variable": true,
     "no-string-literal": false,

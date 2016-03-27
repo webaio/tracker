@@ -5,4 +5,5 @@ export class Device {
     public availableHeight: number;
     public isLocalStorage: boolean;
     public isSessionStorage: boolean;
+    public isAdBlock: boolean;
 }

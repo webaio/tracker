@@ -17,6 +17,7 @@ describe('DeviceDirector', () => {
         let availableHeightSpy = sinon.spy(deviceBuilder, 'buildAvailableHeight');
         let isLocalStorageSpy = sinon.spy(deviceBuilder, 'buildIsLocalStorage');
         let isSessionStorageSpy = sinon.spy(deviceBuilder, 'buildIsSessionStorage');
+        let isAdBlockSpy = sinon.spy(deviceBuilder, 'buildIsAdBlock');
 
         deviceDirector.buildDevice();
 
@@ -26,6 +27,7 @@ describe('DeviceDirector', () => {
         expect(availableHeightSpy.calledOnce).to.be.true;
         expect(isLocalStorageSpy.calledOnce).to.be.true;
         expect(isSessionStorageSpy.calledOnce).to.be.true;
+        expect(isAdBlockSpy.calledOnce).to.be.true;
         done();
     });
 

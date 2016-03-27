@@ -19,6 +19,7 @@ export class ParametersNormalizer {
         this.normalizedParameters.rd = parameters.date;
         this.normalizedParameters.d11 = parameters.isSessionStorage;
         this.normalizedParameters.d12 = parameters.isLocalStorage;
+        this.normalizedParameters.d14 = parameters.isAdBlock;
 
         return this.normalizedParameters;
     }

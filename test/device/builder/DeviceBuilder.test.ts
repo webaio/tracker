@@ -72,4 +72,12 @@ describe('DeviceBuilder', () => {
         expect(testDevice).to.have.property('isAdBlock', true);
         done();
     });
+
+    it('should properly build property device.isAdBlock', (done) => {
+        deviceBuilder.buildIsJavascript();
+        let testDevice = deviceBuilder.getDevice();
+
+        expect(testDevice).to.have.property('isJavascript', true);
+        done();
+    });
 });

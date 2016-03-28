@@ -6,4 +6,5 @@ export class Device {
     public isLocalStorage: boolean;
     public isSessionStorage: boolean;
     public isAdBlock: boolean;
+    public isJavascript: boolean;
 }

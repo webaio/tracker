@@ -59,6 +59,10 @@ export class DeviceBuilderImpl implements DeviceBuilder {
         this.device.isAdBlock = this.adBlockDetector.isAdBlock();
     }
 
+    buildIsJavascript () {
+        this.device.isJavascript = true;
+    }
+
     getDevice(): Device {
         return this.device;
     }

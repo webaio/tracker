@@ -17,6 +17,7 @@ export class DeviceDirector {
         this.deviceBuilder.buildIsSessionStorage();
         this.deviceBuilder.buildIsAdBlock();
         this.deviceBuilder.buildIsJavascript();
+        this.deviceBuilder.buildIsPdf();
     }
 
     getDevice(): Device {

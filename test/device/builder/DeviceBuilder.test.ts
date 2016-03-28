@@ -13,7 +13,8 @@ describe('DeviceBuilder', () => {
             Mocks.windowSizeDetector,
             Mocks.localStorageDetector,
             Mocks.sessionStorageDetector,
-            Mocks.adBlockDetector
+            Mocks.adBlockDetector,
+            Mocks.pdfDetector
         );
     });
 
@@ -73,11 +74,19 @@ describe('DeviceBuilder', () => {
         done();
     });
 
-    it('should properly build property device.isAdBlock', (done) => {
+    it('should properly build property device.isJavascript', (done) => {
         deviceBuilder.buildIsJavascript();
         let testDevice = deviceBuilder.getDevice();
 
         expect(testDevice).to.have.property('isJavascript', true);
+        done();
+    });
+
+    it('should properly build property device.isPdf', (done) => {
+        deviceBuilder.buildIsPdf();
+        let testDevice = deviceBuilder.getDevice();
+
+        expect(testDevice).to.have.property('isPdf', true);
         done();
     });
 });

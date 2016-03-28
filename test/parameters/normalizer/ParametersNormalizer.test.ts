@@ -20,7 +20,8 @@ describe('ParametersNormalizer', () => {
             isLocalStorage: true,
             isSessionStorage: false,
             isAdBlock: false,
-            isJavascript: true
+            isJavascript: true,
+            isPdf: true
         };
 
         let normalized: NormalizedParameters = parametersNormalizer.normalize(parameters);
@@ -33,6 +34,7 @@ describe('ParametersNormalizer', () => {
         expect(normalized).to.have.property('t', 'WEBA-123');
         expect(normalized).to.have.property('u', 'testU');
         expect(normalized).to.have.property('d3', true);
+        expect(normalized).to.have.property('d5', true);
         expect(normalized).to.have.property('d11', false);
         expect(normalized).to.have.property('d12', true);
         expect(normalized).to.have.property('d14', false);

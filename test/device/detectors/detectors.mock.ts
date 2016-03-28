@@ -66,3 +66,20 @@ export let adBlockWindowInvalid = {
     },
     getComputedStyle: () => baitInvalid
 };
+
+export let pdfWindowValid = {
+    ActiveXObject: (name) => {
+        if (name === 'PDF.PdfCtrl') {
+            return true;
+        }
+    }
+};
+
+export let pdfNavigatorValid = {
+    plugins: [{
+        name: 'WebKit built-in PDF'
+    }]
+};
+
+export let pdfWindowInvalid = {};
+export let pdfNavigatorInvalid = {};

@@ -3,6 +3,7 @@ import { ScreenSizeDetector } from '../../../src/device/detectors/ScreenSize/Scr
 import { LocalStorageDetector } from '../../../src/device/detectors/LocalStorage/LocalStorageDetector';
 import { SessionStorageDetector } from '../../../src/device/detectors/SessionStorage/SessionStorageDetector';
 import { AdBlockDetector } from '../../../src/device/detectors/AdBlock/AdBlockDetector';
+import { PdfDetector } from '../../../src/device/detectors/Pdf/PdfDetector';
 
 export let windowSizeDetector = <WindowSizeDetector> {
     getWidth: () => { return 1; },
@@ -24,4 +25,8 @@ export let sessionStorageDetector = <SessionStorageDetector> {
 
 export let adBlockDetector = <AdBlockDetector> {
     isAdBlock: () => { return true }
+};
+
+export let pdfDetector = <PdfDetector> {
+    isPdf: () => { return true }
 };

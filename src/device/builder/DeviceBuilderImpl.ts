@@ -5,6 +5,7 @@ import { LocalStorageDetector } from '../detectors/LocalStorage/LocalStorageDete
 import { WindowSizeDetector } from '../detectors/WindowSize/WindowSizeDetector';
 import { ScreenSizeDetector } from '../detectors/ScreenSize/ScreenSizeDetector';
 import { AdBlockDetector } from '../detectors/AdBlock/AdBlockDetector';
+import { PdfDetector } from '../detectors/Pdf/PdfDetector';
 
 
 export class DeviceBuilderImpl implements DeviceBuilder {
@@ -14,13 +15,15 @@ export class DeviceBuilderImpl implements DeviceBuilder {
     private localStorageDetector: LocalStorageDetector;
     private sessionStorageDetector: SessionStorageDetector;
     private adBlockDetector: AdBlockDetector;
+    private pdfDetector: PdfDetector;
 
     constructor(
         screenSizeDetector: ScreenSizeDetector,
         windowSizeDetector: WindowSizeDetector,
         localStorageDetector: LocalStorageDetector,
         sessionStorageDetector: SessionStorageDetector,
-        adBlockDetector: AdBlockDetector
+        adBlockDetector: AdBlockDetector,
+        pdfDetector: PdfDetector
     ) {
         this.device = new Device();
 
@@ -29,6 +32,7 @@ export class DeviceBuilderImpl implements DeviceBuilder {
         this.localStorageDetector = localStorageDetector;
         this.sessionStorageDetector = sessionStorageDetector;
         this.adBlockDetector = adBlockDetector;
+        this.pdfDetector = pdfDetector;
     }
 
     buildWidth() {
@@ -61,6 +65,10 @@ export class DeviceBuilderImpl implements DeviceBuilder {
 
     buildIsJavascript () {
         this.device.isJavascript = true;
+    }
+
+    buildIsPdf () {
+        this.device.isPdf = true;
     }
 
     getDevice(): Device {

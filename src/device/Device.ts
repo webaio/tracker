@@ -7,4 +7,5 @@ export class Device {
     public isSessionStorage: boolean;
     public isAdBlock: boolean;
     public isJavascript: boolean;
+    public isPdf: boolean;
 }

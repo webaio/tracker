@@ -20,7 +20,8 @@ export let deviceDirector = {
             isLocalStorage: true,
             isSessionStorage: false,
             isAdBlock: false,
-            isJavascript: true
+            isJavascript: true,
+            isPdf: true
         };
 
         return device;

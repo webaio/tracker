@@ -8,5 +8,6 @@ export interface DeviceBuilder {
     buildIsSessionStorage();
     buildIsAdBlock();
     buildIsJavascript();
+    buildIsPdf();
     getDevice(): Device;
 }

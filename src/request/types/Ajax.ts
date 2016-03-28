@@ -5,9 +5,10 @@ const MAX_URL_LENGTH = 2040;
 export class Ajax implements Request {
     send (domain: string, queryString: string, method?: string) {
         let http;
-        if (XMLHttpRequest instanceof Function) {
+
+        try {
             http = new XMLHttpRequest();
-        } else {
+        } catch (e) {
             http = new ActiveXObject('Microsoft.XMLHTTP');
         }
 

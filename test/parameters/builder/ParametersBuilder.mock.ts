@@ -19,7 +19,8 @@ export let deviceDirector = {
             availableHeight: 4,
             isLocalStorage: true,
             isSessionStorage: false,
-            isAdBlock: false
+            isAdBlock: false,
+            isJavascript: true
         };
 
         return device;

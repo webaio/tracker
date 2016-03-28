@@ -16,6 +16,7 @@ export class DeviceDirector {
         this.deviceBuilder.buildIsLocalStorage();
         this.deviceBuilder.buildIsSessionStorage();
         this.deviceBuilder.buildIsAdBlock();
+        this.deviceBuilder.buildIsJavascript();
     }
 
     getDevice(): Device {

@@ -7,6 +7,7 @@ export class NormalizedParameters {
     public e: string;
     public u: string;
     public rd: string;
+    public d3: boolean;
     public d11: boolean;
     public d12: boolean;
     public d14: boolean;
@@ -20,6 +21,7 @@ export class NormalizedParameters {
         this.e = '';
         this.u = '';
         this.rd = '';
+        this.d3 = true;
         this.d11 = false;
         this.d12 = false;
         this.d14 = false;

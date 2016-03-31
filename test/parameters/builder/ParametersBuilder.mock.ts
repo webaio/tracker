@@ -21,7 +21,8 @@ export let deviceDirector = {
             isSessionStorage: false,
             isAdBlock: false,
             isJavascript: true,
-            isPdf: true
+            isPdf: true,
+            isCanvas: true
         };
 
         return device;

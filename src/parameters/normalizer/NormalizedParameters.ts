@@ -11,6 +11,7 @@ export class NormalizedParameters {
     public d5: boolean;
     public d11: boolean;
     public d12: boolean;
+    public d13: boolean;
     public d14: boolean;
 
     initEmpty() {
@@ -26,6 +27,7 @@ export class NormalizedParameters {
         this.d5 = false;
         this.d11 = false;
         this.d12 = false;
+        this.d13 = false;
         this.d14 = false;
 
         return this;

@@ -21,6 +21,7 @@ export class ParametersNormalizer {
         this.normalizedParameters.d5 = parameters.isPdf;
         this.normalizedParameters.d11 = parameters.isSessionStorage;
         this.normalizedParameters.d12 = parameters.isLocalStorage;
+        this.normalizedParameters.d13 = parameters.isCanvas;
         this.normalizedParameters.d14 = parameters.isAdBlock;
 
         return this.normalizedParameters;

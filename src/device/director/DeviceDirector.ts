@@ -18,6 +18,7 @@ export class DeviceDirector {
         this.deviceBuilder.buildIsAdBlock();
         this.deviceBuilder.buildIsJavascript();
         this.deviceBuilder.buildIsPdf();
+        this.deviceBuilder.buildIsCanvas();
     }
 
     getDevice(): Device {

@@ -4,6 +4,7 @@ import { LocalStorageDetector } from '../../../src/device/detectors/LocalStorage
 import { SessionStorageDetector } from '../../../src/device/detectors/SessionStorage/SessionStorageDetector';
 import { AdBlockDetector } from '../../../src/device/detectors/AdBlock/AdBlockDetector';
 import { PdfDetector } from '../../../src/device/detectors/Pdf/PdfDetector';
+import { CanvasDetector } from '../../../src/device/detectors/Canvas/CanvasDetector';
 
 export let windowSizeDetector = <WindowSizeDetector> {
     getWidth: () => { return 1; },
@@ -29,4 +30,8 @@ export let adBlockDetector = <AdBlockDetector> {
 
 export let pdfDetector = <PdfDetector> {
     isPdf: () => { return true }
+};
+
+export let canvasDetector = <CanvasDetector>{
+    isCanvas: () => { return true }
 };

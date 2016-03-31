@@ -21,7 +21,8 @@ describe('ParametersNormalizer', () => {
             isSessionStorage: false,
             isAdBlock: false,
             isJavascript: true,
-            isPdf: true
+            isPdf: true,
+            isCanvas: false
         };
 
         let normalized: NormalizedParameters = parametersNormalizer.normalize(parameters);
@@ -37,6 +38,7 @@ describe('ParametersNormalizer', () => {
         expect(normalized).to.have.property('d5', true);
         expect(normalized).to.have.property('d11', false);
         expect(normalized).to.have.property('d12', true);
+        expect(normalized).to.have.property('d13', false);
         expect(normalized).to.have.property('d14', false);
         done();
     });

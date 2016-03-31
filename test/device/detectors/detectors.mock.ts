@@ -83,3 +83,20 @@ export let pdfNavigatorValid = {
 
 export let pdfWindowInvalid = {};
 export let pdfNavigatorInvalid = {};
+
+export let canvasWindowValid = {
+    document: {
+        createElement: () => {
+            return {
+                getContext: () => true
+            }
+        }
+    }
+};
+export let canvasWindowInvalid = {
+    document: {
+        createElement: () => {
+            return {}
+        }
+    }
+};

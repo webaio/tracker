@@ -9,5 +9,6 @@ export interface DeviceBuilder {
     buildIsAdBlock();
     buildIsJavascript();
     buildIsPdf();
+    buildIsCanvas();
     getDevice(): Device;
 }

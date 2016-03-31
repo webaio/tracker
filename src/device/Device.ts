@@ -8,4 +8,5 @@ export class Device {
     public isAdBlock: boolean;
     public isJavascript: boolean;
     public isPdf: boolean;
+    public isCanvas: boolean;
 }

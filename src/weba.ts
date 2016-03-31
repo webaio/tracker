@@ -17,6 +17,7 @@ import { LocalStorageDetector } from './device/detectors/LocalStorage/LocalStora
 import { SessionStorageDetector } from './device/detectors/SessionStorage/SessionStorageDetector';
 import { AdBlockDetector } from './device/detectors/AdBlock/AdBlockDetector';
 import { PdfDetector } from './device/detectors/Pdf/PdfDetector';
+import { CanvasDetector } from './device/detectors/Canvas/CanvasDetector';
 
 let pageview = {
     event: 'pageview',
@@ -43,7 +44,8 @@ let global: any,
     requestHandler: RequestHandler,
     parametersNormalizer: ParametersNormalizer,
     adBlockDetector: AdBlockDetector,
-    pdfDetector: PdfDetector;
+    pdfDetector: PdfDetector,
+    canvasDetector: CanvasDetector;
 
 dataLayer = [];
 global = window;
@@ -60,6 +62,7 @@ ajax = new Ajax();
 requestHandler = new RequestHandler(queryStringBuilder, config, ajax);
 adBlockDetector = new AdBlockDetector(global);
 pdfDetector = new PdfDetector(global, navigator);
+canvasDetector = new CanvasDetector(global);
 screenSizeDetector = new ScreenSizeDetector(global);
 windowSizeDetector = new WindowSizeDetector(global);
 localStorageDetector = new LocalStorageDetector(localStorage);
@@ -71,7 +74,8 @@ deviceBuilder = new DeviceBuilderImpl(
     localStorageDetector,
     sessionStorageDetector,
     adBlockDetector,
-    pdfDetector
+    pdfDetector,
+    canvasDetector
 );
 
 deviceDirector = new DeviceDirector(deviceBuilder);

@@ -14,7 +14,8 @@ describe('DeviceBuilder', () => {
             Mocks.localStorageDetector,
             Mocks.sessionStorageDetector,
             Mocks.adBlockDetector,
-            Mocks.pdfDetector
+            Mocks.pdfDetector,
+            Mocks.canvasDetector
         );
     });
 
@@ -87,6 +88,14 @@ describe('DeviceBuilder', () => {
         let testDevice = deviceBuilder.getDevice();
 
         expect(testDevice).to.have.property('isPdf', true);
+        done();
+    });
+
+    it('should properly build property device.isCanvas', (done) => {
+        deviceBuilder.buildIsCanvas();
+        let testDevice = deviceBuilder.getDevice();
+
+        expect(testDevice).to.have.property('isCanvas', true);
         done();
     });
 });

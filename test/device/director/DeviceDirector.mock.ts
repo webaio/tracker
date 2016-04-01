@@ -17,6 +17,7 @@ export class DeviceBuilderImpl implements DeviceBuilder {
     buildIsAdBlock(){};
     buildIsJavascript(){};
     buildIsPdf(){};
-    buildIsCanvas() { };
+    buildIsCanvas(){};
+    buildIsFlash(){};
     getDevice(){return this.device};
 }

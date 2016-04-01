@@ -100,3 +100,25 @@ export let canvasWindowInvalid = {
         }
     }
 };
+
+export let flashWindowValid = {
+    ActiveXObject: () => {
+        return {}
+    }
+};
+
+export let flashWindowInvalid = {};
+
+export let flashNavigatorValid = {
+    plugins: {
+        'Shockwave Flash': {}
+    }
+};
+
+export let flashNavigatorValidNoFlash = {
+    plugins: {
+        'something': {}
+    }
+};
+
+export let flashNavigatorInvalid = {};

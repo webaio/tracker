@@ -9,4 +9,5 @@ export class Device {
     public isJavascript: boolean;
     public isPdf: boolean;
     public isCanvas: boolean;
+    public isFlash: boolean;
 }

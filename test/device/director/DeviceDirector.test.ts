@@ -21,6 +21,7 @@ describe('DeviceDirector', () => {
         let isJavascriptSpy = sinon.spy(deviceBuilder, 'buildIsJavascript');
         let isPdfSpy = sinon.spy(deviceBuilder, 'buildIsPdf');
         let isCanvasSpy = sinon.spy(deviceBuilder, 'buildIsCanvas');
+        let isFlashSpy = sinon.spy(deviceBuilder, 'buildIsFlash');
 
         deviceDirector.buildDevice();
 
@@ -34,6 +35,7 @@ describe('DeviceDirector', () => {
         expect(isJavascriptSpy.calledOnce).to.be.true;
         expect(isPdfSpy.calledOnce).to.be.true;
         expect(isCanvasSpy.calledOnce).to.be.true;
+        expect(isFlashSpy.calledOnce).to.be.true;
         done();
     });
 

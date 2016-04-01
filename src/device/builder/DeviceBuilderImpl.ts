@@ -7,7 +7,7 @@ import { ScreenSizeDetector } from '../detectors/ScreenSize/ScreenSizeDetector';
 import { AdBlockDetector } from '../detectors/AdBlock/AdBlockDetector';
 import { PdfDetector } from '../detectors/Pdf/PdfDetector';
 import { CanvasDetector } from '../detectors/Canvas/CanvasDetector';
-
+import { FlashDetector } from '../detectors/Flash/FlashDetector';
 
 export class DeviceBuilderImpl implements DeviceBuilder {
     private device: Device;
@@ -18,6 +18,7 @@ export class DeviceBuilderImpl implements DeviceBuilder {
     private adBlockDetector: AdBlockDetector;
     private pdfDetector: PdfDetector;
     private canvasDetector: CanvasDetector;
+    private flashDetector: FlashDetector;
 
     constructor(
         screenSizeDetector: ScreenSizeDetector,
@@ -26,7 +27,8 @@ export class DeviceBuilderImpl implements DeviceBuilder {
         sessionStorageDetector: SessionStorageDetector,
         adBlockDetector: AdBlockDetector,
         pdfDetector: PdfDetector,
-        canvasDetector: CanvasDetector
+        canvasDetector: CanvasDetector,
+        flashDetector: FlashDetector
     ) {
         this.device = new Device();
 
@@ -37,6 +39,7 @@ export class DeviceBuilderImpl implements DeviceBuilder {
         this.adBlockDetector = adBlockDetector;
         this.pdfDetector = pdfDetector;
         this.canvasDetector = canvasDetector;
+        this.flashDetector = flashDetector;
     }
 
     buildWidth() {
@@ -77,6 +80,10 @@ export class DeviceBuilderImpl implements DeviceBuilder {
 
     buildIsCanvas() {
         this.device.isCanvas = this.canvasDetector.isCanvas();
+    }
+
+    buildIsFlash() {
+        this.device.isFlash = this.flashDetector.isFlash();
     }
 
     getDevice(): Device {

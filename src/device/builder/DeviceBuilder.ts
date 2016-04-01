@@ -10,5 +10,6 @@ export interface DeviceBuilder {
     buildIsJavascript();
     buildIsPdf();
     buildIsCanvas();
+    buildIsFlash();
     getDevice(): Device;
 }

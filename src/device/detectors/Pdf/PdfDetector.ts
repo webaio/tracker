@@ -39,12 +39,18 @@ export class PdfDetector {
     private hasNavigatorPlugin (name) {
         if (this.navigator.plugins) {
             for (let key in this.navigator.plugins) {
-                if (this.navigator.plugins.hasOwnProperty(key) && this.navigator.plugins[key].name.indexOf(name) > -1) {
+                if (this.detectName(key, name)) {
                     return true;
                 }
             }
         }
 
         return false;
+    }
+
+    private detectName (plugin, name) {
+        return this.navigator.plugins.hasOwnProperty(plugin)
+            && this.navigator.plugins[plugin].hasOwnProperty('name')
+            && this.navigator.plugins[plugin].name.indexOf(name) > -1;
     }
 }

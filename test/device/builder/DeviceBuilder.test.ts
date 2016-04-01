@@ -15,7 +15,8 @@ describe('DeviceBuilder', () => {
             Mocks.sessionStorageDetector,
             Mocks.adBlockDetector,
             Mocks.pdfDetector,
-            Mocks.canvasDetector
+            Mocks.canvasDetector,
+            Mocks.flashDetector
         );
     });
 
@@ -96,6 +97,14 @@ describe('DeviceBuilder', () => {
         let testDevice = deviceBuilder.getDevice();
 
         expect(testDevice).to.have.property('isCanvas', true);
+        done();
+    });
+
+    it('should properly build property device.isFlash', (done) => {
+        deviceBuilder.buildIsFlash();
+        let testDevice = deviceBuilder.getDevice();
+
+        expect(testDevice).to.have.property('isFlash', true);
         done();
     });
 });

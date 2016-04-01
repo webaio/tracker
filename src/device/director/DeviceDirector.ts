@@ -19,6 +19,7 @@ export class DeviceDirector {
         this.deviceBuilder.buildIsJavascript();
         this.deviceBuilder.buildIsPdf();
         this.deviceBuilder.buildIsCanvas();
+        this.deviceBuilder.buildIsFlash();
     }
 
     getDevice(): Device {

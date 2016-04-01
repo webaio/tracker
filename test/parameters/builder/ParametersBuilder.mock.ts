@@ -22,7 +22,8 @@ export let deviceDirector = {
             isAdBlock: false,
             isJavascript: true,
             isPdf: true,
-            isCanvas: true
+            isCanvas: true,
+            isFlash: true
         };
 
         return device;

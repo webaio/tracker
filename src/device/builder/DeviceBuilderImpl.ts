@@ -8,6 +8,8 @@ import { AdBlockDetector } from '../detectors/AdBlock/AdBlockDetector';
 import { PdfDetector } from '../detectors/Pdf/PdfDetector';
 import { CanvasDetector } from '../detectors/Canvas/CanvasDetector';
 import { FlashDetector } from '../detectors/Flash/FlashDetector';
+import { SilverlightDetector } from '../detectors/Silverlight/SilverlightDetector';
+
 
 export class DeviceBuilderImpl implements DeviceBuilder {
     private device: Device;
@@ -19,6 +21,7 @@ export class DeviceBuilderImpl implements DeviceBuilder {
     private pdfDetector: PdfDetector;
     private canvasDetector: CanvasDetector;
     private flashDetector: FlashDetector;
+    private silverlightDetetor: SilverlightDetector;
 
     constructor(
         screenSizeDetector: ScreenSizeDetector,
@@ -28,7 +31,8 @@ export class DeviceBuilderImpl implements DeviceBuilder {
         adBlockDetector: AdBlockDetector,
         pdfDetector: PdfDetector,
         canvasDetector: CanvasDetector,
-        flashDetector: FlashDetector
+        flashDetector: FlashDetector,
+        silverlightDetector: SilverlightDetector
     ) {
         this.device = new Device();
 
@@ -40,6 +44,7 @@ export class DeviceBuilderImpl implements DeviceBuilder {
         this.pdfDetector = pdfDetector;
         this.canvasDetector = canvasDetector;
         this.flashDetector = flashDetector;
+        this.silverlightDetetor = silverlightDetector;
     }
 
     buildWidth() {
@@ -84,6 +89,10 @@ export class DeviceBuilderImpl implements DeviceBuilder {
 
     buildIsFlash() {
         this.device.isFlash = this.flashDetector.isFlash();
+    }
+
+    buildIsSilverlight() {
+        this.device.isSilverlight = this.silverlightDetetor.isSilverlight();
     }
 
     getDevice(): Device {

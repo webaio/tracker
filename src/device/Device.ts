@@ -10,4 +10,5 @@ export class Device {
     public isPdf: boolean;
     public isCanvas: boolean;
     public isFlash: boolean;
+    public isSilverlight: boolean;
 }

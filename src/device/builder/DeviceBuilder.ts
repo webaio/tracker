@@ -11,5 +11,6 @@ export interface DeviceBuilder {
     buildIsPdf();
     buildIsCanvas();
     buildIsFlash();
+    buildIsSilverlight();
     getDevice(): Device;
 }

@@ -122,3 +122,24 @@ export let flashNavigatorValidNoFlash = {
 };
 
 export let flashNavigatorInvalid = {};
+
+export let silverlightWindowValid = {
+    ActiveXObject: () => {
+        return {}
+    }
+};
+
+export let silverlightWindowInvalid = {};
+export let silverlightNavigatorInvalid = {};
+
+export let silverlightNavigatorValid = {
+    plugins: {
+        'Silverlight Plug-In': {}
+    }
+};
+
+export let silverlightNavigatorValidNoSL = {
+    plugins: {
+        'something': {}
+    }
+};

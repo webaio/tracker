@@ -23,7 +23,8 @@ export let deviceDirector = {
             isJavascript: true,
             isPdf: true,
             isCanvas: true,
-            isFlash: true
+            isFlash: true,
+            isSilverlight: false
         };
 
         return device;

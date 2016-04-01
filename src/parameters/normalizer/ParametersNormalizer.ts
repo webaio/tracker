@@ -20,6 +20,7 @@ export class ParametersNormalizer {
         this.normalizedParameters.d3 = parameters.isJavascript;
         this.normalizedParameters.d4 = parameters.isFlash;
         this.normalizedParameters.d5 = parameters.isPdf;
+        this.normalizedParameters.d9 = parameters.isSilverlight;
         this.normalizedParameters.d11 = parameters.isSessionStorage;
         this.normalizedParameters.d12 = parameters.isLocalStorage;
         this.normalizedParameters.d13 = parameters.isCanvas;

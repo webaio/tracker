@@ -6,6 +6,7 @@ import { AdBlockDetector } from '../../../src/device/detectors/AdBlock/AdBlockDe
 import { PdfDetector } from '../../../src/device/detectors/Pdf/PdfDetector';
 import { CanvasDetector } from '../../../src/device/detectors/Canvas/CanvasDetector';
 import { FlashDetector } from '../../../src/device/detectors/Flash/FlashDetector';
+import { SilverlightDetector } from '../../../src/device/detectors/Silverlight/SilverlightDetector';
 
 export let windowSizeDetector = <WindowSizeDetector> {
     getWidth: () => { return 1; },
@@ -39,4 +40,8 @@ export let canvasDetector = <CanvasDetector>{
 
 export let flashDetector = <FlashDetector>{
     isFlash: () => { return true }
+};
+
+export let silverlightDetector = <SilverlightDetector>{
+    isSilverlight: () => { return true }
 };

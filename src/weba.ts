@@ -19,6 +19,7 @@ import { AdBlockDetector } from './device/detectors/AdBlock/AdBlockDetector';
 import { PdfDetector } from './device/detectors/Pdf/PdfDetector';
 import { CanvasDetector } from './device/detectors/Canvas/CanvasDetector';
 import { FlashDetector } from './device/detectors/Flash/FlashDetector';
+import { SilverlightDetector } from './device/detectors/Silverlight/SilverlightDetector';
 
 let pageview = {
     event: 'pageview',
@@ -47,7 +48,8 @@ let global: any,
     adBlockDetector: AdBlockDetector,
     pdfDetector: PdfDetector,
     canvasDetector: CanvasDetector,
-    flashDetector: FlashDetector;
+    flashDetector: FlashDetector,
+    silverlightDetector: SilverlightDetector;
 
 dataLayer = [];
 global = window;
@@ -70,6 +72,7 @@ windowSizeDetector = new WindowSizeDetector(global);
 localStorageDetector = new LocalStorageDetector(localStorage);
 sessionStorageDetector = new SessionStorageDetector(sessionStorage);
 flashDetector = new FlashDetector(global, navigator);
+silverlightDetector = new SilverlightDetector(global, navigator);
 
 deviceBuilder = new DeviceBuilderImpl(
     screenSizeDetector,
@@ -79,7 +82,8 @@ deviceBuilder = new DeviceBuilderImpl(
     adBlockDetector,
     pdfDetector,
     canvasDetector,
-    flashDetector
+    flashDetector,
+    silverlightDetector
 );
 
 deviceDirector = new DeviceDirector(deviceBuilder);

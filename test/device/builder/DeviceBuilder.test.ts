@@ -16,7 +16,8 @@ describe('DeviceBuilder', () => {
             Mocks.adBlockDetector,
             Mocks.pdfDetector,
             Mocks.canvasDetector,
-            Mocks.flashDetector
+            Mocks.flashDetector,
+            Mocks.silverlightDetector
         );
     });
 
@@ -105,6 +106,14 @@ describe('DeviceBuilder', () => {
         let testDevice = deviceBuilder.getDevice();
 
         expect(testDevice).to.have.property('isFlash', true);
+        done();
+    });
+
+    it('should properly build property device.isSilverlight', (done) => {
+        deviceBuilder.buildIsSilverlight();
+        let testDevice = deviceBuilder.getDevice();
+
+        expect(testDevice).to.have.property('isSilverlight', true);
         done();
     });
 });

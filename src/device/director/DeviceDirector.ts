@@ -20,6 +20,7 @@ export class DeviceDirector {
         this.deviceBuilder.buildIsPdf();
         this.deviceBuilder.buildIsCanvas();
         this.deviceBuilder.buildIsFlash();
+        this.deviceBuilder.buildIsSilverlight();
     }
 
     getDevice(): Device {

@@ -19,5 +19,6 @@ export class DeviceBuilderImpl implements DeviceBuilder {
     buildIsPdf(){};
     buildIsCanvas(){};
     buildIsFlash(){};
+    buildIsSilverlight(){};
     getDevice(){return this.device};
 }

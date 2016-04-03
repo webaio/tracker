@@ -25,7 +25,8 @@ describe('ParametersNormalizer', () => {
             isCanvas: false,
             isFlash: false,
             isSilverlight: false,
-            isCookie: false
+            isCookie: false,
+            isTouch: true
         };
 
         let normalized: NormalizedParameters = parametersNormalizer.normalize(parameters);
@@ -37,6 +38,7 @@ describe('ParametersNormalizer', () => {
         expect(normalized).to.have.property('e', 'testE');
         expect(normalized).to.have.property('t', 'WEBA-123');
         expect(normalized).to.have.property('u', 'testU');
+        expect(normalized).to.have.property('d1', true);
         expect(normalized).to.have.property('d2', false);
         expect(normalized).to.have.property('d3', true);
         expect(normalized).to.have.property('d4', false);

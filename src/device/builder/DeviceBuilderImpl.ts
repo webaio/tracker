@@ -10,6 +10,7 @@ import { CanvasDetector } from '../detectors/Canvas/CanvasDetector';
 import { FlashDetector } from '../detectors/Flash/FlashDetector';
 import { SilverlightDetector } from '../detectors/Silverlight/SilverlightDetector';
 import { CookieDetector } from '../detectors/Cookie/CookieDetector';
+import { TouchDetector } from '../detectors/Touch/TouchDetector';
 
 
 export class DeviceBuilderImpl implements DeviceBuilder {
@@ -24,6 +25,7 @@ export class DeviceBuilderImpl implements DeviceBuilder {
     private flashDetector: FlashDetector;
     private silverlightDetetor: SilverlightDetector;
     private cookieDetector: CookieDetector;
+    private touchDetector: TouchDetector;
 
     constructor(
         screenSizeDetector: ScreenSizeDetector,
@@ -35,7 +37,8 @@ export class DeviceBuilderImpl implements DeviceBuilder {
         canvasDetector: CanvasDetector,
         flashDetector: FlashDetector,
         silverlightDetector: SilverlightDetector,
-        cookieDetector: CookieDetector
+        cookieDetector: CookieDetector,
+        touchDetector: TouchDetector
     ) {
         this.device = new Device();
 
@@ -49,6 +52,7 @@ export class DeviceBuilderImpl implements DeviceBuilder {
         this.flashDetector = flashDetector;
         this.silverlightDetetor = silverlightDetector;
         this.cookieDetector = cookieDetector;
+        this.touchDetector = touchDetector;
     }
 
     buildWidth() {
@@ -101,6 +105,10 @@ export class DeviceBuilderImpl implements DeviceBuilder {
 
     buildIsCookie() {
         this.device.isCookie = this.cookieDetector.isCookie();
+    }
+
+    buildIsTouch() {
+        this.device.isTouch = this.touchDetector.isTouch();
     }
 
     getDevice(): Device {

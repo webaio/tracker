@@ -12,4 +12,5 @@ export class Device {
     public isFlash: boolean;
     public isSilverlight: boolean;
     public isCookie: boolean;
+    public isTouch: boolean;
 }

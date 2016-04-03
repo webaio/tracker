@@ -18,7 +18,8 @@ describe('DeviceBuilder', () => {
             Mocks.canvasDetector,
             Mocks.flashDetector,
             Mocks.silverlightDetector,
-            Mocks.cookieDetector
+            Mocks.cookieDetector,
+            Mocks.touchDetector
         );
     });
 
@@ -123,6 +124,14 @@ describe('DeviceBuilder', () => {
         let testDevice = deviceBuilder.getDevice();
 
         expect(testDevice).to.have.property('isCookie', true);
+        done();
+    });
+
+    it('should properly build property device.isTouch', (done) => {
+        deviceBuilder.buildIsTouch();
+        let testDevice = deviceBuilder.getDevice();
+
+        expect(testDevice).to.have.property('isTouch', true);
         done();
     });
 });

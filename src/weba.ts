@@ -21,6 +21,7 @@ import { CanvasDetector } from './device/detectors/Canvas/CanvasDetector';
 import { FlashDetector } from './device/detectors/Flash/FlashDetector';
 import { SilverlightDetector } from './device/detectors/Silverlight/SilverlightDetector';
 import { CookieDetector } from './device/detectors/Cookie/CookieDetector';
+import { TouchDetector } from './device/detectors/Touch/TouchDetector';
 
 let pageview = {
     event: 'pageview',
@@ -51,7 +52,8 @@ let global: any,
     canvasDetector: CanvasDetector,
     flashDetector: FlashDetector,
     silverlightDetector: SilverlightDetector,
-    cookieDetector: CookieDetector;
+    cookieDetector: CookieDetector,
+    touchDetector: TouchDetector;
 
 dataLayer = [];
 global = window;
@@ -76,6 +78,7 @@ sessionStorageDetector = new SessionStorageDetector(sessionStorage);
 flashDetector = new FlashDetector(global, navigator);
 silverlightDetector = new SilverlightDetector(global, navigator);
 cookieDetector = new CookieDetector(document, navigator);
+touchDetector = new TouchDetector(global, navigator);
 
 deviceBuilder = new DeviceBuilderImpl(
     screenSizeDetector,
@@ -87,7 +90,8 @@ deviceBuilder = new DeviceBuilderImpl(
     canvasDetector,
     flashDetector,
     silverlightDetector,
-    cookieDetector
+    cookieDetector,
+    touchDetector
 );
 
 deviceDirector = new DeviceDirector(deviceBuilder);

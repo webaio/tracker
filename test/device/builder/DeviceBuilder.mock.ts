@@ -8,6 +8,7 @@ import { CanvasDetector } from '../../../src/device/detectors/Canvas/CanvasDetec
 import { FlashDetector } from '../../../src/device/detectors/Flash/FlashDetector';
 import { SilverlightDetector } from '../../../src/device/detectors/Silverlight/SilverlightDetector';
 import { CookieDetector } from '../../../src/device/detectors/Cookie/CookieDetector';
+import { TouchDetector } from '../../../src/device/detectors/Touch/TouchDetector';
 
 export let windowSizeDetector = <WindowSizeDetector> {
     getWidth: () => { return 1; },
@@ -49,4 +50,8 @@ export let silverlightDetector = <SilverlightDetector>{
 
 export let cookieDetector = <CookieDetector>{
     isCookie: () => { return true }
+};
+
+export let touchDetector = <TouchDetector>{
+    isTouch: () => { return true }
 };

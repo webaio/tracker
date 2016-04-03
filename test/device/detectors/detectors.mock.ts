@@ -159,3 +159,15 @@ export let cookieNavigatorValid = {
 export let cookieNavigatorInvalid = {
     cookieEnabled: false
 };
+
+export let touchWindowValid = {
+    'touchstart': true
+};
+
+export let touchWindowInvalid = {};
+
+export let touchNavigatorValid = {
+    msMaxTouchPoints: 100
+};
+
+export let touchNavigatorInvalid = {};

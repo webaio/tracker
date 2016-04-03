@@ -171,3 +171,24 @@ export let touchNavigatorValid = {
 };
 
 export let touchNavigatorInvalid = {};
+
+export let quickTimeNavigatorValid = {
+    plugins: [{
+        name: 'QuickTime TEST'
+    }],
+    appVersion: 'test',
+    appName: 'app test'
+};
+
+export let quickTimeNavigatorOSValid = {
+    plugins: [{
+        name: 'PDF'
+    }],
+    appVersion: '4.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.87 Safari/537.36',
+    appName: 'Microsoft'
+};
+
+export let quickTimeNavigatorInvalid = {
+    appVersion: 'test',
+    appName: 'app test'
+};

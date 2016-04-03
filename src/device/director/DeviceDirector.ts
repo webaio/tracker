@@ -23,6 +23,7 @@ export class DeviceDirector {
         this.deviceBuilder.buildIsSilverlight();
         this.deviceBuilder.buildIsCookie();
         this.deviceBuilder.buildIsTouch();
+        this.deviceBuilder.buildIsQuickTime();
     }
 
     getDevice(): Device {

@@ -22,6 +22,7 @@ import { FlashDetector } from './device/detectors/Flash/FlashDetector';
 import { SilverlightDetector } from './device/detectors/Silverlight/SilverlightDetector';
 import { CookieDetector } from './device/detectors/Cookie/CookieDetector';
 import { TouchDetector } from './device/detectors/Touch/TouchDetector';
+import { QuickTimeDetector } from './device/detectors/QuickTime/QuickTimeDetector';
 
 let pageview = {
     event: 'pageview',
@@ -53,7 +54,8 @@ let global: any,
     flashDetector: FlashDetector,
     silverlightDetector: SilverlightDetector,
     cookieDetector: CookieDetector,
-    touchDetector: TouchDetector;
+    touchDetector: TouchDetector,
+    quickTimeDetector: QuickTimeDetector;
 
 dataLayer = [];
 global = window;
@@ -79,6 +81,7 @@ flashDetector = new FlashDetector(global, navigator);
 silverlightDetector = new SilverlightDetector(global, navigator);
 cookieDetector = new CookieDetector(document, navigator);
 touchDetector = new TouchDetector(global, navigator);
+quickTimeDetector = new QuickTimeDetector(navigator);
 
 deviceBuilder = new DeviceBuilderImpl(
     screenSizeDetector,
@@ -91,7 +94,8 @@ deviceBuilder = new DeviceBuilderImpl(
     flashDetector,
     silverlightDetector,
     cookieDetector,
-    touchDetector
+    touchDetector,
+    quickTimeDetector
 );
 
 deviceDirector = new DeviceDirector(deviceBuilder);

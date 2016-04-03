@@ -143,3 +143,19 @@ export let silverlightNavigatorValidNoSL = {
         'something': {}
     }
 };
+
+export let cookieDocument = {
+    cookie: () => {
+        return {
+            indexOf: () => 0
+        }
+    }
+};
+
+export let cookieNavigatorValid = {
+    cookieEnabled: true
+};
+
+export let cookieNavigatorInvalid = {
+    cookieEnabled: false
+};

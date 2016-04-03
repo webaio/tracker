@@ -17,7 +17,8 @@ describe('DeviceBuilder', () => {
             Mocks.pdfDetector,
             Mocks.canvasDetector,
             Mocks.flashDetector,
-            Mocks.silverlightDetector
+            Mocks.silverlightDetector,
+            Mocks.cookieDetector
         );
     });
 
@@ -114,6 +115,14 @@ describe('DeviceBuilder', () => {
         let testDevice = deviceBuilder.getDevice();
 
         expect(testDevice).to.have.property('isSilverlight', true);
+        done();
+    });
+
+    it('should properly build property device.isCookie', (done) => {
+        deviceBuilder.buildIsCookie();
+        let testDevice = deviceBuilder.getDevice();
+
+        expect(testDevice).to.have.property('isCookie', true);
         done();
     });
 });

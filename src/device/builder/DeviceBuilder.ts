@@ -12,5 +12,6 @@ export interface DeviceBuilder {
     buildIsCanvas();
     buildIsFlash();
     buildIsSilverlight();
+    buildIsCookie();
     getDevice(): Device;
 }

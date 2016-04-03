@@ -20,5 +20,6 @@ export class DeviceBuilderImpl implements DeviceBuilder {
     buildIsCanvas(){};
     buildIsFlash(){};
     buildIsSilverlight(){};
+    buildIsCookie(){};
     getDevice(){return this.device};
 }

@@ -24,7 +24,8 @@ export let deviceDirector = {
             isPdf: true,
             isCanvas: true,
             isFlash: true,
-            isSilverlight: false
+            isSilverlight: false,
+            isCookie: false
         };
 
         return device;

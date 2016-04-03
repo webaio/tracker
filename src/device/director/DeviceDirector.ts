@@ -21,6 +21,7 @@ export class DeviceDirector {
         this.deviceBuilder.buildIsCanvas();
         this.deviceBuilder.buildIsFlash();
         this.deviceBuilder.buildIsSilverlight();
+        this.deviceBuilder.buildIsCookie();
     }
 
     getDevice(): Device {

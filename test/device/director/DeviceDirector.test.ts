@@ -26,6 +26,7 @@ describe('DeviceDirector', () => {
         let isCookieSpy = sinon.spy(deviceBuilder, 'buildIsCookie');
         let isTouchSpy = sinon.spy(deviceBuilder, 'buildIsTouch');
         let isQuickTimeSpy = sinon.spy(deviceBuilder, 'buildIsQuickTime');
+        let isJavaSpy = sinon.spy(deviceBuilder, 'buildIsJava');
 
         deviceDirector.buildDevice();
 
@@ -44,6 +45,7 @@ describe('DeviceDirector', () => {
         expect(isCookieSpy.calledOnce).to.be.true;
         expect(isTouchSpy.calledOnce).to.be.true;
         expect(isQuickTimeSpy.calledOnce).to.be.true;
+        expect(isJavaSpy.calledOnce).to.be.true;
         done();
     });
 

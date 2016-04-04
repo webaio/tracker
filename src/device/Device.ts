@@ -14,4 +14,5 @@ export class Device {
     public isCookie: boolean;
     public isTouch: boolean;
     public isQuickTime: boolean;
+    public isJava: boolean;
 }

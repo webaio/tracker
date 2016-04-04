@@ -27,7 +27,8 @@ export let deviceDirector = {
             isSilverlight: false,
             isCookie: false,
             isTouch: true,
-            isQuickTime: false
+            isQuickTime: false,
+            isJava: false
         };
 
         return device;

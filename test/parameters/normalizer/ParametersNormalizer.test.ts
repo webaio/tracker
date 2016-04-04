@@ -27,7 +27,8 @@ describe('ParametersNormalizer', () => {
             isSilverlight: false,
             isCookie: false,
             isTouch: true,
-            isQuickTime: true
+            isQuickTime: true,
+            isJava: false
         };
 
         let normalized: NormalizedParameters = parametersNormalizer.normalize(parameters);
@@ -44,6 +45,7 @@ describe('ParametersNormalizer', () => {
         expect(normalized).to.have.property('d3', true);
         expect(normalized).to.have.property('d4', false);
         expect(normalized).to.have.property('d5', true);
+        expect(normalized).to.have.property('d6', false);
         expect(normalized).to.have.property('d7', true);
         expect(normalized).to.have.property('d9', false);
         expect(normalized).to.have.property('d11', false);

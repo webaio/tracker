@@ -192,3 +192,15 @@ export let quickTimeNavigatorInvalid = {
     appVersion: 'test',
     appName: 'app test'
 };
+
+export let javaNavigatorValid = {
+    javaEnabled: () => true
+};
+
+export let javaNavigatorInalid = {
+    appVersion: 'test'
+};
+
+export let javaNavigatorNotMethod = {
+    javaEnabled: 'test'
+};

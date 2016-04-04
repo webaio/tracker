@@ -12,6 +12,7 @@ import { SilverlightDetector } from '../detectors/Silverlight/SilverlightDetecto
 import { CookieDetector } from '../detectors/Cookie/CookieDetector';
 import { TouchDetector } from '../detectors/Touch/TouchDetector';
 import { QuickTimeDetector } from '../detectors/QuickTime/QuickTimeDetector';
+import { JavaDetector } from '../detectors/Java/JavaDetector';
 
 
 export class DeviceBuilderImpl implements DeviceBuilder {
@@ -28,6 +29,7 @@ export class DeviceBuilderImpl implements DeviceBuilder {
     private cookieDetector: CookieDetector;
     private touchDetector: TouchDetector;
     private quickTimeDetector: QuickTimeDetector;
+    private javaDetector: JavaDetector;
 
     constructor(
         screenSizeDetector: ScreenSizeDetector,
@@ -41,7 +43,8 @@ export class DeviceBuilderImpl implements DeviceBuilder {
         silverlightDetector: SilverlightDetector,
         cookieDetector: CookieDetector,
         touchDetector: TouchDetector,
-        quickTimeDetector: QuickTimeDetector
+        quickTimeDetector: QuickTimeDetector,
+        javaDetector: JavaDetector
     ) {
         this.device = new Device();
 
@@ -57,6 +60,7 @@ export class DeviceBuilderImpl implements DeviceBuilder {
         this.cookieDetector = cookieDetector;
         this.touchDetector = touchDetector;
         this.quickTimeDetector = quickTimeDetector;
+        this.javaDetector = javaDetector;
     }
 
     buildWidth() {
@@ -117,6 +121,10 @@ export class DeviceBuilderImpl implements DeviceBuilder {
 
     buildIsQuickTime() {
         this.device.isQuickTime = this.quickTimeDetector.isQuickTime();
+    }
+
+    buildIsJava() {
+        this.device.isJava = this.javaDetector.isJava();
     }
 
     getDevice(): Device {

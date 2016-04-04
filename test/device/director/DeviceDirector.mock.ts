@@ -23,5 +23,6 @@ export class DeviceBuilderImpl implements DeviceBuilder {
     buildIsCookie(){};
     buildIsTouch(){};
     buildIsQuickTime(){};
+    buildIsJava(){};
     getDevice(){return this.device};
 }

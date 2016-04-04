@@ -24,6 +24,7 @@ export class DeviceDirector {
         this.deviceBuilder.buildIsCookie();
         this.deviceBuilder.buildIsTouch();
         this.deviceBuilder.buildIsQuickTime();
+        this.deviceBuilder.buildIsJava();
     }
 
     getDevice(): Device {

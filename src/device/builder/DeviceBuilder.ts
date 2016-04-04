@@ -15,5 +15,6 @@ export interface DeviceBuilder {
     buildIsCookie();
     buildIsTouch();
     buildIsQuickTime();
+    buildIsJava();
     getDevice(): Device;
 }

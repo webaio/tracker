@@ -19,7 +19,8 @@ describe('DeviceBuilder', () => {
             Mocks.flashDetector,
             Mocks.silverlightDetector,
             Mocks.cookieDetector,
-            Mocks.touchDetector
+            Mocks.touchDetector,
+            Mocks.quickTimeDetector
         );
     });
 
@@ -132,6 +133,14 @@ describe('DeviceBuilder', () => {
         let testDevice = deviceBuilder.getDevice();
 
         expect(testDevice).to.have.property('isTouch', true);
+        done();
+    });
+
+    it('should properly build property device.isQuickTime', (done) => {
+        deviceBuilder.buildIsQuickTime();
+        let testDevice = deviceBuilder.getDevice();
+
+        expect(testDevice).to.have.property('isQuickTime', true);
         done();
     });
 });

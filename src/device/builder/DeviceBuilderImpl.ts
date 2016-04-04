@@ -11,6 +11,7 @@ import { FlashDetector } from '../detectors/Flash/FlashDetector';
 import { SilverlightDetector } from '../detectors/Silverlight/SilverlightDetector';
 import { CookieDetector } from '../detectors/Cookie/CookieDetector';
 import { TouchDetector } from '../detectors/Touch/TouchDetector';
+import { QuickTimeDetector } from '../detectors/QuickTime/QuickTimeDetector';
 
 
 export class DeviceBuilderImpl implements DeviceBuilder {
@@ -26,6 +27,7 @@ export class DeviceBuilderImpl implements DeviceBuilder {
     private silverlightDetetor: SilverlightDetector;
     private cookieDetector: CookieDetector;
     private touchDetector: TouchDetector;
+    private quickTimeDetector: QuickTimeDetector;
 
     constructor(
         screenSizeDetector: ScreenSizeDetector,
@@ -38,7 +40,8 @@ export class DeviceBuilderImpl implements DeviceBuilder {
         flashDetector: FlashDetector,
         silverlightDetector: SilverlightDetector,
         cookieDetector: CookieDetector,
-        touchDetector: TouchDetector
+        touchDetector: TouchDetector,
+        quickTimeDetector: QuickTimeDetector
     ) {
         this.device = new Device();
 
@@ -53,6 +56,7 @@ export class DeviceBuilderImpl implements DeviceBuilder {
         this.silverlightDetetor = silverlightDetector;
         this.cookieDetector = cookieDetector;
         this.touchDetector = touchDetector;
+        this.quickTimeDetector = quickTimeDetector;
     }
 
     buildWidth() {
@@ -109,6 +113,10 @@ export class DeviceBuilderImpl implements DeviceBuilder {
 
     buildIsTouch() {
         this.device.isTouch = this.touchDetector.isTouch();
+    }
+
+    buildIsQuickTime() {
+        this.device.isQuickTime = this.quickTimeDetector.isQuickTime();
     }
 
     getDevice(): Device {

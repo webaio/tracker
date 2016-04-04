@@ -14,5 +14,6 @@ export interface DeviceBuilder {
     buildIsSilverlight();
     buildIsCookie();
     buildIsTouch();
+    buildIsQuickTime();
     getDevice(): Device;
 }

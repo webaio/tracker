@@ -22,5 +22,6 @@ export class DeviceBuilderImpl implements DeviceBuilder {
     buildIsSilverlight(){};
     buildIsCookie(){};
     buildIsTouch(){};
+    buildIsQuickTime(){};
     getDevice(){return this.device};
 }

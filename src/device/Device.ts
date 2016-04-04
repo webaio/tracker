@@ -13,4 +13,5 @@ export class Device {
     public isSilverlight: boolean;
     public isCookie: boolean;
     public isTouch: boolean;
+    public isQuickTime: boolean;
 }

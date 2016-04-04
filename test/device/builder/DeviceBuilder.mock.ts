@@ -9,6 +9,7 @@ import { FlashDetector } from '../../../src/device/detectors/Flash/FlashDetector
 import { SilverlightDetector } from '../../../src/device/detectors/Silverlight/SilverlightDetector';
 import { CookieDetector } from '../../../src/device/detectors/Cookie/CookieDetector';
 import { TouchDetector } from '../../../src/device/detectors/Touch/TouchDetector';
+import { QuickTimeDetector } from '../../../src/device/detectors/QuickTime/QuickTimeDetector';
 
 export let windowSizeDetector = <WindowSizeDetector> {
     getWidth: () => { return 1; },
@@ -54,4 +55,8 @@ export let cookieDetector = <CookieDetector>{
 
 export let touchDetector = <TouchDetector>{
     isTouch: () => { return true }
+};
+
+export let quickTimeDetector = <QuickTimeDetector>{
+    isQuickTime: () => { return true }
 };

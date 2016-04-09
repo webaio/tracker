@@ -24,6 +24,7 @@ describe('NormalizedParameters', () => {
         expect(normalized).to.have.property('d5', false);
         expect(normalized).to.have.property('d6', false);
         expect(normalized).to.have.property('d7', false);
+        expect(normalized).to.have.property('d8', false);
         expect(normalized).to.have.property('d9', false);
         expect(normalized).to.have.property('d11', false);
         expect(normalized).to.have.property('d12', false);

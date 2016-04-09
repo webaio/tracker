@@ -24,6 +24,7 @@ import { CookieDetector } from './device/detectors/Cookie/CookieDetector';
 import { TouchDetector } from './device/detectors/Touch/TouchDetector';
 import { QuickTimeDetector } from './device/detectors/QuickTime/QuickTimeDetector';
 import { JavaDetector } from './device/detectors/Java/JavaDetector';
+import { RealPlayerDetector } from './device/detectors/RealPlayer/RealPlayerDetector';
 
 let pageview = {
     event: 'pageview',
@@ -57,7 +58,8 @@ let global: any,
     cookieDetector: CookieDetector,
     touchDetector: TouchDetector,
     quickTimeDetector: QuickTimeDetector,
-    javaDetector: JavaDetector;
+    javaDetector: JavaDetector,
+    realPlayerDetector: RealPlayerDetector;
 
 dataLayer = [];
 global = window;
@@ -85,6 +87,7 @@ cookieDetector = new CookieDetector(document, navigator);
 touchDetector = new TouchDetector(global, navigator);
 quickTimeDetector = new QuickTimeDetector(navigator);
 javaDetector = new JavaDetector(navigator);
+realPlayerDetector = new RealPlayerDetector(global, navigator);
 
 deviceBuilder = new DeviceBuilderImpl(
     screenSizeDetector,
@@ -99,7 +102,8 @@ deviceBuilder = new DeviceBuilderImpl(
     cookieDetector,
     touchDetector,
     quickTimeDetector,
-    javaDetector
+    javaDetector,
+    realPlayerDetector
 );
 
 deviceDirector = new DeviceDirector(deviceBuilder);

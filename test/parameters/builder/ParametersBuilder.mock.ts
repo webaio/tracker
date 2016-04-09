@@ -28,7 +28,8 @@ export let deviceDirector = {
             isCookie: false,
             isTouch: true,
             isQuickTime: false,
-            isJava: false
+            isJava: false,
+            isRealPlayer: true
         };
 
         return device;

@@ -14,6 +14,7 @@ export class NormalizedParameters {
     public d5: boolean;
     public d6: boolean;
     public d7: boolean;
+    public d8: boolean;
     public d9: boolean;
     public d11: boolean;
     public d12: boolean;
@@ -36,6 +37,7 @@ export class NormalizedParameters {
         this.d5 = false;
         this.d6 = false;
         this.d7 = false;
+        this.d8 = false;
         this.d9 = false;
         this.d11 = false;
         this.d12 = false;

@@ -24,6 +24,7 @@ export class ParametersNormalizer {
         this.normalizedParameters.d5 = parameters.isPdf;
         this.normalizedParameters.d6 = parameters.isJava;
         this.normalizedParameters.d7 = parameters.isQuickTime;
+        this.normalizedParameters.d8 = parameters.isRealPlayer;
         this.normalizedParameters.d9 = parameters.isSilverlight;
         this.normalizedParameters.d11 = parameters.isSessionStorage;
         this.normalizedParameters.d12 = parameters.isLocalStorage;

@@ -25,6 +25,7 @@ export class DeviceDirector {
         this.deviceBuilder.buildIsTouch();
         this.deviceBuilder.buildIsQuickTime();
         this.deviceBuilder.buildIsJava();
+        this.deviceBuilder.buildIsRealPlayer();
     }
 
     getDevice(): Device {

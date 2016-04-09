@@ -13,6 +13,7 @@ import { CookieDetector } from '../detectors/Cookie/CookieDetector';
 import { TouchDetector } from '../detectors/Touch/TouchDetector';
 import { QuickTimeDetector } from '../detectors/QuickTime/QuickTimeDetector';
 import { JavaDetector } from '../detectors/Java/JavaDetector';
+import { RealPlayerDetector } from '../detectors/RealPlayer/RealPlayerDetector';
 
 
 export class DeviceBuilderImpl implements DeviceBuilder {
@@ -30,6 +31,7 @@ export class DeviceBuilderImpl implements DeviceBuilder {
     private touchDetector: TouchDetector;
     private quickTimeDetector: QuickTimeDetector;
     private javaDetector: JavaDetector;
+    private realPlayerDetector: RealPlayerDetector;
 
     constructor(
         screenSizeDetector: ScreenSizeDetector,
@@ -44,7 +46,8 @@ export class DeviceBuilderImpl implements DeviceBuilder {
         cookieDetector: CookieDetector,
         touchDetector: TouchDetector,
         quickTimeDetector: QuickTimeDetector,
-        javaDetector: JavaDetector
+        javaDetector: JavaDetector,
+        realPlayerDetector: RealPlayerDetector
     ) {
         this.device = new Device();
 
@@ -61,6 +64,7 @@ export class DeviceBuilderImpl implements DeviceBuilder {
         this.touchDetector = touchDetector;
         this.quickTimeDetector = quickTimeDetector;
         this.javaDetector = javaDetector;
+        this.realPlayerDetector = realPlayerDetector;
     }
 
     buildWidth() {
@@ -125,6 +129,10 @@ export class DeviceBuilderImpl implements DeviceBuilder {
 
     buildIsJava() {
         this.device.isJava = this.javaDetector.isJava();
+    }
+
+    buildIsRealPlayer() {
+        this.device.isRealPlayer = this.realPlayerDetector.isRealPlayer();
     }
 
     getDevice(): Device {

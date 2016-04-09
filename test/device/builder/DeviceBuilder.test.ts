@@ -21,7 +21,8 @@ describe('DeviceBuilder', () => {
             Mocks.cookieDetector,
             Mocks.touchDetector,
             Mocks.quickTimeDetector,
-            Mocks.javaDetector
+            Mocks.javaDetector,
+            Mocks.realPlayerDetector
         );
     });
 
@@ -150,6 +151,14 @@ describe('DeviceBuilder', () => {
         let testDevice = deviceBuilder.getDevice();
 
         expect(testDevice).to.have.property('isJava', true);
+        done();
+    });
+
+    it('should properly build property device.isRealPlayer', (done) => {
+        deviceBuilder.buildIsRealPlayer();
+        let testDevice = deviceBuilder.getDevice();
+
+        expect(testDevice).to.have.property('isRealPlayer', true);
         done();
     });
 });

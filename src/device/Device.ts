@@ -15,4 +15,5 @@ export class Device {
     public isTouch: boolean;
     public isQuickTime: boolean;
     public isJava: boolean;
+    public isRealPlayer: boolean;
 }

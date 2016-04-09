@@ -93,6 +93,7 @@ export let canvasWindowValid = {
         }
     }
 };
+
 export let canvasWindowInvalid = {
     document: {
         createElement: () => {
@@ -204,3 +205,21 @@ export let javaNavigatorInalid = {
 export let javaNavigatorNotMethod = {
     javaEnabled: 'test'
 };
+
+export let realPlayerNavigatorValid = {
+    plugins: [{
+        name: 'RealPlayer Plugin'
+    }]
+};
+
+export let realPlayerNavigatorInvalid = {};
+
+export let realPlayerfWindowValid = {
+    ActiveXObject: (name) => {
+        if (name === 'RealPlayer') {
+            return true;
+        }
+    }
+};
+
+export let realPlayerfWindowInalid = {};

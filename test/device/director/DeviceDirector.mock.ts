@@ -24,5 +24,6 @@ export class DeviceBuilderImpl implements DeviceBuilder {
     buildIsTouch(){};
     buildIsQuickTime(){};
     buildIsJava(){};
+    buildIsRealPlayer(){};
     getDevice(){return this.device};
 }

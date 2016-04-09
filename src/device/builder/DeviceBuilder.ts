@@ -16,5 +16,6 @@ export interface DeviceBuilder {
     buildIsTouch();
     buildIsQuickTime();
     buildIsJava();
+    buildIsRealPlayer();
     getDevice(): Device;
 }

@@ -1,13 +1,16 @@
+import {Detector} from '../../Detector';
+import {Device} from '../../Device';
+
 const QUICKTIME_NAME = 'QuickTime';
 
-export class QuickTimeDetector {
+export class QuickTimeDetector implements Detector {
     private navigator: Navigator;
 
     constructor (navigator: Navigator) {
         this.navigator = navigator;
     }
 
-    isQuickTime () {
+    public detect(device: Device): void {
         let detected = false;
 
         if (this.hasNavigatorPlugin(QUICKTIME_NAME)) {
@@ -18,10 +21,10 @@ export class QuickTimeDetector {
             detected = true;
         }
 
-        return detected;
+        device.isQuickTime = detected;
     }
 
-    private hasNavigatorPlugin (name) {
+    private hasNavigatorPlugin(name): boolean {
         if (this.navigator.plugins) {
             for (let key in this.navigator.plugins) {
                 if (this.detectName(key, name)) {
@@ -33,13 +36,13 @@ export class QuickTimeDetector {
         return false;
     }
 
-    private detectName (plugin, name) {
+    private detectName(plugin, name): boolean {
         return this.navigator.plugins.hasOwnProperty(plugin)
             && this.navigator.plugins[plugin].hasOwnProperty('name')
             && this.navigator.plugins[plugin].name.indexOf(name) > -1;
     }
 
-    private detectByOS () {
+    private detectByOS(): boolean {
         return (this.navigator.appVersion.indexOf('Mac') > 0)
             && (this.navigator.appName.substring(0, 9) === 'Microsoft')
             && (parseInt(this.navigator.appVersion, 10) < 5);

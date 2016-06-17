@@ -1,3 +1,5 @@
+import {Detector} from '../../Detector';
+import {Device} from '../../Device';
 const PLUGIN_NAMES = ['RealPlayer(tm) G2 LiveConnect-Enabled Plug-In (32-bit)',
     'RealPlayer(tm) G2 LiveConnect-Enabled Plug-In (64-bit)',
     'RealPlayer Plugin'];
@@ -8,7 +10,7 @@ const AXO_NAMES = ['rmocx.RealPlayer G2 Control',
     'RealVideo.RealVideo(tm) ActiveX Control (32-bit)',
     'RealPlayer'];
 
-export class RealPlayerDetector {
+export class RealPlayerDetector implements Detector {
     private navigator: Navigator;
     private window: any;
 
@@ -17,7 +19,7 @@ export class RealPlayerDetector {
         this.window = window;
     }
 
-    isRealPlayer() {
+    public detect(device: Device): void {
         let detected = false;
         let axoNamesLength = AXO_NAMES.length;
 
@@ -39,10 +41,10 @@ export class RealPlayerDetector {
             }
         }
 
-        return detected;
+        device.isRealPlayer = detected;
     }
 
-    private canCreateActiveXObject (name) {
+    private canCreateActiveXObject(name): boolean {
         try {
             let activeObject = this.window.ActiveXObject(name);
 
@@ -52,7 +54,7 @@ export class RealPlayerDetector {
         }
     }
 
-    private hasNavigatorPlugin (name) {
+    private hasNavigatorPlugin(name): boolean {
         if (this.navigator.plugins) {
             for (let key in this.navigator.plugins) {
                 if (this.detectName(key, name)) {
@@ -64,10 +66,9 @@ export class RealPlayerDetector {
         return false;
     }
 
-    private detectName (plugin, name) {
+    private detectName(plugin, name): boolean {
         return this.navigator.plugins.hasOwnProperty(plugin)
             && this.navigator.plugins[plugin].hasOwnProperty('name')
             && this.navigator.plugins[plugin].name.indexOf(name) > -1;
     }
 }
-

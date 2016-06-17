@@ -1,3 +1,6 @@
+import {Detector} from '../../Detector';
+import {Device} from '../../Device';
+
 const baitClass: string = `
     pub_300x250
     pub_300x250m
@@ -18,7 +21,7 @@ const baitStyle: string = `
     top: -1000px !important;
 `;
 
-export class AdBlockDetector {
+export class AdBlockDetector implements Detector {
     private window: any;
     private bait: HTMLDivElement;
 
@@ -26,7 +29,7 @@ export class AdBlockDetector {
         this.window = window;
     }
 
-    isAdBlock() {
+    public detect(device: Device): void {
         let detected = false;
 
         this.createBait();
@@ -45,10 +48,10 @@ export class AdBlockDetector {
 
         this.destroyBait();
 
-        return detected;
+        device.isAdBlock = detected;
     }
 
-    private createBait () {
+    private createBait(): void {
         let bait: HTMLDivElement = this.window.document.createElement('div');
         bait.setAttribute('class', baitClass);
         bait.setAttribute('style', baitStyle);
@@ -63,11 +66,11 @@ export class AdBlockDetector {
         this.bait.clientWidth = undefined;
     };
 
-    private destroyBait () {
+    private destroyBait(): void {
         this.window.document.body.removeChild(this.bait);
     };
 
-    private detectAdBlock () {
+    private detectAdBlock(): boolean {
         return this.window.document.body.getAttribute('abp') !== null
             || this.bait.offsetParent === null
             || this.bait.offsetHeight === 0
@@ -78,7 +81,7 @@ export class AdBlockDetector {
             || this.bait.clientWidth === 0;
     }
 
-    private isHideByAdBlock (baitTemp) {
+    private isHideByAdBlock(baitTemp): boolean {
         return baitTemp && (baitTemp.getPropertyValue('display') === 'none' || baitTemp.getPropertyValue('visibility') === 'hidden');
     }
 }

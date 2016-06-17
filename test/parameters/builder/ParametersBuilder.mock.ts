@@ -10,7 +10,7 @@ export let global = {
     }
 };
 
-export let deviceDirector = {
+export let deviceDetector = {
     getDevice: () => {
         let device: Device = {
             width: 1,
@@ -33,6 +33,5 @@ export let deviceDirector = {
         };
 
         return device;
-    },
-    buildDevice: () => true
-}
+    }
+};

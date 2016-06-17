@@ -5,23 +5,21 @@ import * as sinon from 'sinon';
 import { ParametersBuilderImpl } from '../../../src/parameters/builder/ParametersBuilderImpl';
 import * as Mocks from './ParametersBuilder.mock';
 import { Config } from '../../../src/config/Config';
-import { DeviceDirector } from '../../../src/device/director/DeviceDirector';
+import {DeviceDetector} from '../../../src/device/DeviceDetector';
 
 describe('ParametersBuilder', () => {
     let parametersBuilder;
 
     before(() => {
-        parametersBuilder = new ParametersBuilderImpl(<Config> <any>Mocks.config, Mocks.global, <DeviceDirector> <any>Mocks.deviceDirector);
+        parametersBuilder = new ParametersBuilderImpl(<Config> <any>Mocks.config, Mocks.global, <DeviceDetector> <any>Mocks.deviceDetector);
     });
 
     it('should properly build property device', (done) => {
-        let buildDevice = sinon.spy(Mocks.deviceDirector, 'buildDevice');
-        let getDevice = sinon.spy(Mocks.deviceDirector, 'getDevice');
+        let getDevice = sinon.spy(Mocks.deviceDetector, 'getDevice');
         parametersBuilder.buildDevice();
 
         let testParameters = parametersBuilder.getParameters();
 
-        expect(buildDevice.calledOnce).to.be.true;
         expect(getDevice.calledOnce).to.be.true;
         expect(testParameters).to.have.property('width');
         expect(testParameters).to.have.property('height');

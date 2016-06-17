@@ -1,23 +1,22 @@
 import { ParametersBuilder } from './ParametersBuilder';
 import { Parameters } from '../Parameters';
 import { Config } from '../../config/Config';
-import { DeviceDirector } from '../../device/director/DeviceDirector';
+import {DeviceDetector} from '../../device/DeviceDetector';
 
 export class ParametersBuilderImpl implements ParametersBuilder {
     private parameters: Parameters;
     private config: Config;
     private global: Window;
-    private deviceDirector: DeviceDirector;
+    private deviceDetector: DeviceDetector;
 
-    constructor(config: Config, global: any, deviceDirector: DeviceDirector) {
+    constructor(config: Config, global: any, deviceDetector: DeviceDetector) {
         this.config = config;
         this.global = global;
-        this.deviceDirector = deviceDirector;
+        this.deviceDetector = deviceDetector;
     }
 
     buildDevice () {
-        this.deviceDirector.buildDevice();
-        this.parameters = <Parameters>this.deviceDirector.getDevice();
+        this.parameters = <Parameters>this.deviceDetector.getDevice();
     }
 
     buildTrackerId() {

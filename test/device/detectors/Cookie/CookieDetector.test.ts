@@ -3,6 +3,7 @@
 import { expect } from 'chai';
 import { CookieDetector } from '../../../../src/device/detectors/Cookie/CookieDetector';
 import * as Mocks from '../detectors.mock';
+import { Device } from '../../../../src/device/Device';
 
 describe('CookieDetector', () => {
     it('should properly detect cookie from navigator', (done) => {
@@ -10,10 +11,10 @@ describe('CookieDetector', () => {
             <Document><any>Mocks.cookieDocument,
             <Navigator><any>Mocks.cookieNavigatorValid
         );
+        let device = new Device();
+        cookieDetector.detect(device);
 
-        let detected = cookieDetector.isCookie();
-
-        expect(detected).to.be.true;
+        expect(device.isCookie).to.be.true;
 
         done();
     });
@@ -24,9 +25,10 @@ describe('CookieDetector', () => {
             <Navigator><any>Mocks.cookieNavigatorInvalid
         );
 
-        let detected = cookieDetector.isCookie();
+        let device = new Device();
+        cookieDetector.detect(device);
 
-        expect(detected).to.be.true;
+        expect(device.isCookie).to.be.true;
 
         done();
     });

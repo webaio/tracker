@@ -18,9 +18,9 @@ var gulp        = require('gulp'),
 
 gulp.task('lint', function() {
     return gulp.src([
-            __dirname + '/src/**/*.ts',
-            __dirname + '/test/**/*.test.ts'
-        ])
+        __dirname + '/src/**/*.ts',
+        __dirname + '/test/**/*.test.ts'
+    ])
         .pipe(tslint())
         .pipe(tslint.report('verbose'));
 });
@@ -35,7 +35,7 @@ gulp.task('compile-src', function() {
     return gulp.src(__dirname + '/src/**/*.ts')
         .pipe(tsc(tsProject))
         .js.pipe(gulp.dest(__dirname + '/.tmp/src/'));
-    });
+});
 
 var tsTestProject = tsc.createProject('tsconfig.json');
 
@@ -43,7 +43,7 @@ gulp.task('compile-test', function() {
     return gulp.src(__dirname + '/test/**/*.ts')
         .pipe(tsc(tsTestProject))
         .js.pipe(gulp.dest(__dirname + '/.tmp/test/'));
-    });
+});
 
 gulp.task('compile', function(cb) {
     runSequence('compile-src', 'compile-test', cb);
@@ -66,7 +66,7 @@ gulp.task('bundle', function () {
         .pipe(uglify({ preserveComments : false }))
         .pipe(rename({ extname: '.min.js' }))
         .pipe(gulp.dest(__dirname + '/dist/'));
-    });
+});
 
 gulp.task('build', function(cb) {
     runSequence('compile', 'bundle', cb);
@@ -80,19 +80,19 @@ gulp.task('mocha', function() {
     return gulp.src('.tmp/test/**/*.test.js')
         .pipe(mocha({ui: 'bdd'}))
         .pipe(istanbul.writeReports());
-    });
+});
 
 gulp.task('istanbul:hook', function() {
     return gulp.src(['.tmp/src/**/*.js'])
         .pipe(istanbul())
         .pipe(istanbul.hookRequire());
-    });
+});
 
 gulp.task('cover', function() {
     if (!process.env.CI) return;
     return gulp.src('coverage/**/lcov.info')
         .pipe(coveralls());
-    });
+});
 
 gulp.task('test', function(cb) {
     runSequence('build', 'istanbul:hook', 'mocha', 'cover', cb);

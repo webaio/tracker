@@ -1,6 +1,9 @@
+import {Detector} from '../../Detector';
+import {Device} from '../../Device';
+
 let pluginNames = ['Adobe Acrobat', 'Chrome PDF Viewer', 'WebKit built-in PDF'];
 
-export class PdfDetector {
+export class PdfDetector implements Detector {
     private window: any;
     private navigator: Navigator;
 
@@ -9,7 +12,7 @@ export class PdfDetector {
         this.navigator = navigator;
     }
 
-    isPdf() {
+    public detect(device: Device): void {
         let detected = this.canCreateActiveXObject('AcroPDF.PDF') || this.canCreateActiveXObject('PDF.PdfCtrl');
 
         if (!detected) {
@@ -23,10 +26,10 @@ export class PdfDetector {
             }
         }
 
-        return detected;
+        device.isPdf = detected;
     }
 
-    private canCreateActiveXObject (name) {
+    private canCreateActiveXObject(name): boolean {
         try {
             let activeObject = this.window.ActiveXObject(name);
 
@@ -36,7 +39,7 @@ export class PdfDetector {
         }
     }
 
-    private hasNavigatorPlugin (name) {
+    private hasNavigatorPlugin(name): boolean {
         if (this.navigator.plugins) {
             for (let key in this.navigator.plugins) {
                 if (this.detectName(key, name)) {
@@ -48,7 +51,7 @@ export class PdfDetector {
         return false;
     }
 
-    private detectName (plugin, name) {
+    private detectName(plugin, name): boolean {
         return this.navigator.plugins.hasOwnProperty(plugin)
             && this.navigator.plugins[plugin].hasOwnProperty('name')
             && this.navigator.plugins[plugin].name.indexOf(name) > -1;

@@ -6,7 +6,7 @@ export class Device {
     public isLocalStorage: boolean;
     public isSessionStorage: boolean;
     public isAdBlock: boolean;
-    public isJavascript: boolean;
+    public isJavascript: boolean = true;
     public isPdf: boolean;
     public isCanvas: boolean;
     public isFlash: boolean;

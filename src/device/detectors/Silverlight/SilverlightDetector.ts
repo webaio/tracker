@@ -1,6 +1,9 @@
+import {Detector} from '../../Detector';
+import {Device} from '../../Device';
+
 const SILVERLIGHT_PLUGIN_NAME = 'Silverlight Plug-In';
 
-export class SilverlightDetector {
+export class SilverlightDetector implements Detector {
     private window: any;
     private navigator: Navigator;
 
@@ -9,7 +12,7 @@ export class SilverlightDetector {
         this.navigator = navigator;
     }
 
-    isSilverlight() {
+    public detect(device: Device): void {
         let detected = false;
 
         try {
@@ -30,7 +33,9 @@ export class SilverlightDetector {
                 detected = !!(activeObject);
             }
         } finally {
-            return detected;
+            device.isSilverlight = detected;
+
+            return;
         }
     }
 }

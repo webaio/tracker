@@ -1,28 +1,26 @@
 ///<reference path="../../../../typings/main.d.ts" />
 
 import { expect } from 'chai';
-import { SessionStorageDetector } from '../../../../src/device/detectors/SessionStorage/SessionStorageDetector';
+import { ScreenSizeDetector } from '../../../../src/device/detectors/ScreenSize/ScreenSizeDetector';
 import * as Mocks from '../detectors.mock';
+import { Device } from '../../../../src/device/Device';
 
-describe('SessionStorageDetector', () => {
-    it('should properly detect sessionStorage existance', (done) => {
-        let sessionStorageDetector = new SessionStorageDetector(<any>Mocks.storageProper);
+describe('ScreenSizeDetector', () => {
+    it('should properly return screens height', (done) => {
+        let device = new Device();
+        let screenSizeDetector = new ScreenSizeDetector(Mocks.windowMock);
+        screenSizeDetector.detect(device);
 
-        expect(sessionStorageDetector.isSessionStorage()).to.be.equal(true);
+        expect(device.availableHeight).to.be.equal(2);
         done();
     });
 
-    it('should properly detect sessionStorage missing', (done) => {
-        let sessionStorageDetector = new SessionStorageDetector(<any>{});
+    it('should properly return screens width', (done) => {
+        let device = new Device();
+        let screenSizeDetector = new ScreenSizeDetector(Mocks.windowMock);
+        screenSizeDetector.detect(device);
 
-        expect(sessionStorageDetector.isSessionStorage()).to.be.equal(false);
-        done();
-    });
-
-    it('should properly detect sessionStorage missing when undefined', (done) => {
-        let sessionStorageDetector = new SessionStorageDetector(undefined);
-
-        expect(sessionStorageDetector.isSessionStorage()).to.be.equal(false);
+        expect(device.availableWidth).to.be.equal(1);
         done();
     });
 });

@@ -1,15 +1,18 @@
+import {Detector} from '../../Detector';
+import {Device} from '../../Device';
+
 const WEBA_COOKIE = 'weba_test';
 
-export class CookieDetector {
+export class CookieDetector implements Detector {
     private document: Document;
     private navigator: Navigator;
 
-    constructor (document: Document, navigator: Navigator) {
+    constructor(document: Document, navigator: Navigator) {
         this.document = document;
         this.navigator = navigator;
     }
 
-    isCookie () {
+    public detect(device: Device): void {
         let cookieEnabled = this.navigator.cookieEnabled;
         if (typeof cookieEnabled === 'undefined' || !cookieEnabled) {
             this.document.cookie = WEBA_COOKIE;
@@ -17,10 +20,10 @@ export class CookieDetector {
             this.deleteCookie(WEBA_COOKIE);
         }
 
-        return cookieEnabled;
+        device.isCookie = cookieEnabled;
     }
 
-    private deleteCookie (cookie) {
+    private deleteCookie(cookie): void {
         this.document.cookie = cookie + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
     }
 }

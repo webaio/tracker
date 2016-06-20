@@ -1,17 +1,21 @@
-export class LocalStorageDetector {
+import {Detector} from '../../Detector';
+import {Device} from '../../Device';
+
+export class LocalStorageDetector implements Detector {
     private localStorage;
+
     constructor(localStorage) {
         this.localStorage = localStorage;
     }
 
-    isLocalStorage() {
+    public detect(device: Device): void {
         let localStorageItem = 'weba_localstorage_test';
         try {
             this.localStorage.setItem(localStorageItem, true);
             this.localStorage.removeItem(localStorageItem);
-            return true;
+            device.isLocalStorage = true;
         } catch (e) {
-            return false;
+            device.isLocalStorage = false;
         }
     }
 }

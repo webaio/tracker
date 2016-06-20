@@ -3,6 +3,7 @@
 import { expect } from 'chai';
 import { SilverlightDetector } from '../../../../src/device/detectors/Silverlight/SilverlightDetector';
 import * as Mocks from '../detectors.mock';
+import { Device } from '../../../../src/device/Device';
 
 describe('SilverlightDetector', () => {
     it('should properly detect SilverLight plugin by creating ActiveXObject', (done) => {
@@ -10,10 +11,10 @@ describe('SilverlightDetector', () => {
             <Window><any>Mocks.silverlightWindowValid,
             <Navigator><any>Mocks.silverlightNavigatorValid
         );
+        let device = new Device();
+        silverlightDetector.detect(device);
 
-        let detected = silverlightDetector.isSilverlight();
-
-        expect(detected).to.be.true;
+        expect(device.isSilverlight).to.be.true;
 
         done();
     });
@@ -21,12 +22,12 @@ describe('SilverlightDetector', () => {
     it('should properly detect Silverlight plugin by looking for pdf plugins', (done) => {
         let silverlightDetector = new SilverlightDetector(
             <Window><any>Mocks.silverlightWindowValid,
-            <Navigator><any>Mocks.silverlightNavigatorValidNoSL
+            <Navigator><any>Mocks.silverlightNavigatorValid
         );
+        let device = new Device();
+        silverlightDetector.detect(device);
 
-        let detected = silverlightDetector.isSilverlight();
-
-        expect(detected).to.be.true;
+        expect(device.isSilverlight).to.be.true;
 
         done();
     });
@@ -36,10 +37,10 @@ describe('SilverlightDetector', () => {
             <Window><any>Mocks.silverlightWindowInvalid,
             <Navigator><any>Mocks.silverlightNavigatorInvalid
         );
+        let device = new Device();
+        silverlightDetector.detect(device);
 
-        let detected = silverlightDetector.isSilverlight();
-
-        expect(detected).to.be.false;
+        expect(device.isSilverlight).to.be.false;
 
         done();
     });
@@ -49,10 +50,10 @@ describe('SilverlightDetector', () => {
             <Window><any>Mocks.silverlightWindowInvalid,
             <Navigator><any>Mocks.silverlightNavigatorValidNoSL
         );
+        let device = new Device();
+        silverlightDetector.detect(device);
 
-        let detected = silverlightDetector.isSilverlight();
-
-        expect(detected).to.be.false;
+        expect(device.isSilverlight).to.be.false;
 
         done();
     });

@@ -6,9 +6,6 @@ import { ParametersBuilder } from './parameters/builder/ParametersBuilder';
 import { ParametersBuilderImpl } from './parameters/builder/ParametersBuilderImpl';
 import { Config } from './config/Config';
 import { ConfigImpl } from './config/ConfigImpl';
-import { DeviceDirector } from './device/director/DeviceDirector';
-import { DeviceBuilder } from './device/builder/DeviceBuilder';
-import { DeviceBuilderImpl } from './device/builder/DeviceBuilderImpl';
 import { ScreenSizeDetector } from './device/detectors/ScreenSize/ScreenSizeDetector';
 import { WindowSizeDetector } from './device/detectors/WindowSize/WindowSizeDetector';
 import { QueryStringBuilder } from './queryString/builder/QueryStringBuilder';
@@ -25,6 +22,8 @@ import { TouchDetector } from './device/detectors/Touch/TouchDetector';
 import { QuickTimeDetector } from './device/detectors/QuickTime/QuickTimeDetector';
 import { JavaDetector } from './device/detectors/Java/JavaDetector';
 import { RealPlayerDetector } from './device/detectors/RealPlayer/RealPlayerDetector';
+import { DeviceDetector } from './device/DeviceDetector';
+import { Device } from './device/Device';
 
 let pageview = {
     event: 'pageview',
@@ -33,36 +32,19 @@ let pageview = {
 
 const MAX_DATALAYER_SIZE: number = 300;
 
-let global: any,
+let global: any = window,
     push: any,
-    dataLayer: Array<any>,
+    dataLayer: Array<any> = [],
     eventHandler: EventHandler,
     config: Config,
-    screenSizeDetector: ScreenSizeDetector,
-    windowSizeDetector: WindowSizeDetector,
-    localStorageDetector: LocalStorageDetector,
-    sessionStorageDetector: SessionStorageDetector,
-    deviceBuilder: DeviceBuilder,
-    deviceDirector: DeviceDirector,
+    deviceDetector: DeviceDetector,
     parametersDirector: ParametersDirector,
     parametersBuilder: ParametersBuilder,
     queryStringBuilder: QueryStringBuilder,
     ajax: Ajax,
     requestHandler: RequestHandler,
-    parametersNormalizer: ParametersNormalizer,
-    adBlockDetector: AdBlockDetector,
-    pdfDetector: PdfDetector,
-    canvasDetector: CanvasDetector,
-    flashDetector: FlashDetector,
-    silverlightDetector: SilverlightDetector,
-    cookieDetector: CookieDetector,
-    touchDetector: TouchDetector,
-    quickTimeDetector: QuickTimeDetector,
-    javaDetector: JavaDetector,
-    realPlayerDetector: RealPlayerDetector;
+    parametersNormalizer: ParametersNormalizer;
 
-dataLayer = [];
-global = window;
 global.dataLayer = global.dataLayer || [];
 push = global.dataLayer.push;
 
@@ -74,40 +56,26 @@ parametersNormalizer = new ParametersNormalizer();
 queryStringBuilder = new QueryStringBuilder();
 ajax = new Ajax();
 requestHandler = new RequestHandler(queryStringBuilder, config, ajax);
-adBlockDetector = new AdBlockDetector(global);
-pdfDetector = new PdfDetector(global, navigator);
-canvasDetector = new CanvasDetector(global);
-screenSizeDetector = new ScreenSizeDetector(global);
-windowSizeDetector = new WindowSizeDetector(global);
-localStorageDetector = new LocalStorageDetector(localStorage);
-sessionStorageDetector = new SessionStorageDetector(sessionStorage);
-flashDetector = new FlashDetector(global, navigator);
-silverlightDetector = new SilverlightDetector(global, navigator);
-cookieDetector = new CookieDetector(document, navigator);
-touchDetector = new TouchDetector(global, navigator);
-quickTimeDetector = new QuickTimeDetector(navigator);
-javaDetector = new JavaDetector(navigator);
-realPlayerDetector = new RealPlayerDetector(global, navigator);
 
-deviceBuilder = new DeviceBuilderImpl(
-    screenSizeDetector,
-    windowSizeDetector,
-    localStorageDetector,
-    sessionStorageDetector,
-    adBlockDetector,
-    pdfDetector,
-    canvasDetector,
-    flashDetector,
-    silverlightDetector,
-    cookieDetector,
-    touchDetector,
-    quickTimeDetector,
-    javaDetector,
-    realPlayerDetector
-);
+deviceDetector = new DeviceDetector();
+deviceDetector.addDetector(new ScreenSizeDetector(global));
+deviceDetector.addDetector(new WindowSizeDetector(global));
+deviceDetector.addDetector(new LocalStorageDetector(localStorage));
+deviceDetector.addDetector(new SessionStorageDetector(sessionStorage));
+deviceDetector.addDetector(new AdBlockDetector(global));
+deviceDetector.addDetector(new PdfDetector(global, navigator));
+deviceDetector.addDetector(new CanvasDetector(global));
+deviceDetector.addDetector(new FlashDetector(global, navigator));
+deviceDetector.addDetector(new SilverlightDetector(global, navigator));
+deviceDetector.addDetector(new CookieDetector(document, navigator));
+deviceDetector.addDetector(new TouchDetector(global, navigator));
+deviceDetector.addDetector(new QuickTimeDetector(navigator));
+deviceDetector.addDetector(new JavaDetector(navigator));
+deviceDetector.addDetector(new RealPlayerDetector(global, navigator));
+deviceDetector.detect(new Device());
 
-deviceDirector = new DeviceDirector(deviceBuilder);
-parametersBuilder = new ParametersBuilderImpl(config, global, deviceDirector);
+
+parametersBuilder = new ParametersBuilderImpl(config, global, deviceDetector);
 parametersDirector = new ParametersDirector(parametersBuilder);
 eventHandler = new EventHandler(parametersDirector, requestHandler, parametersNormalizer);
 

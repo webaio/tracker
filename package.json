@@ -32,7 +32,8 @@
     "typescript": "1.7.5",
     "typings": "0.7.9",
     "vinyl-buffer": "1.0.0",
-    "vinyl-source-stream": "1.1.0"
+    "vinyl-source-stream": "1.1.0",
+    "protractor": "^4.0.0"
   },
   "repository": {
     "type": "git",
@@ -40,5 +41,8 @@
   },
   "keywords": [
     "analytics"
-  ]
+  ],
+  "dependencies": {
+    "node-uuid": "^1.4.7"
+  }
 }

@@ -55,9 +55,9 @@ gulp.task('compile', function(cb) {
 
 gulp.task('bundle', function () {
     var b = browserify({
-        standalone : 'weba',
+        standalone : 'webaTracker',
         entries: __dirname + '/.tmp/src/weba.js',
-        debug: true
+        debug: false
     });
 
     return b.bundle()

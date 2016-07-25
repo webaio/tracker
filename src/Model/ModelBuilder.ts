@@ -12,7 +12,5 @@ export class ModelBuilder implements Builder {
         for (let builder of this.builders) {
             builder.build(model, dataLayerElementPayload);
         }
-
-        console.log(model);
     }
 }

@@ -16,4 +16,8 @@ export class Device {
     public isQuickTime: boolean;
     public isJava: boolean;
     public isRealPlayer: boolean;
+    public encoding: string;
+    public colors: number;
+    public language: string;
+    public flashVersion: string;
 }

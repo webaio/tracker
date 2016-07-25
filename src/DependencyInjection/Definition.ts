@@ -2,20 +2,20 @@ import { Container } from "./Container";
 import { ConfigReader } from "../Config/ConfigReader";
 import { Tracker } from "../Tracker/Tracker";
 import { DeviceDetector } from "../Model/Device/DeviceDetector";
-import { ScreenSizeDetector } from "../Model/Device/detectors/ScreenSize/ScreenSizeDetector";
-import { WindowSizeDetector } from "../Model/Device/detectors/WindowSize/WindowSizeDetector";
-import { LocalStorageDetector } from "../Model/Device/detectors/LocalStorage/LocalStorageDetector";
-import { SessionStorageDetector } from "../Model/Device/detectors/SessionStorage/SessionStorageDetector";
-import { AdBlockDetector } from "../Model/Device/detectors/AdBlock/AdBlockDetector";
-import { PdfDetector } from "../Model/Device/detectors/Pdf/PdfDetector";
-import { CanvasDetector } from "../Model/Device/detectors/Canvas/CanvasDetector";
-import { FlashDetector } from "../Model/Device/detectors/Flash/FlashDetector";
-import { SilverlightDetector } from "../Model/Device/detectors/Silverlight/SilverlightDetector";
-import { CookieDetector } from "../Model/Device/detectors/Cookie/CookieDetector";
-import { TouchDetector } from "../Model/Device/detectors/Touch/TouchDetector";
-import { QuickTimeDetector } from "../Model/Device/detectors/QuickTime/QuickTimeDetector";
-import { JavaDetector } from "../Model/Device/detectors/Java/JavaDetector";
-import { RealPlayerDetector } from "../Model/Device/detectors/RealPlayer/RealPlayerDetector";
+import { ScreenSizeDetector } from "../Model/Device/Detectors/ScreenSize/ScreenSizeDetector";
+import { WindowSizeDetector } from "../Model/Device/Detectors/WindowSize/WindowSizeDetector";
+import { LocalStorageDetector } from "../Model/Device/Detectors/LocalStorage/LocalStorageDetector";
+import { SessionStorageDetector } from "../Model/Device/Detectors/SessionStorage/SessionStorageDetector";
+import { AdBlockDetector } from "../Model/Device/Detectors/AdBlock/AdBlockDetector";
+import { PdfDetector } from "../Model/Device/Detectors/Pdf/PdfDetector";
+import { CanvasDetector } from "../Model/Device/Detectors/Canvas/CanvasDetector";
+import { FlashDetector } from "../Model/Device/Detectors/Flash/FlashDetector";
+import { SilverlightDetector } from "../Model/Device/Detectors/Silverlight/SilverlightDetector";
+import { CookieDetector } from "../Model/Device/Detectors/Cookie/CookieDetector";
+import { TouchDetector } from "../Model/Device/Detectors/Touch/TouchDetector";
+import { QuickTimeDetector } from "../Model/Device/Detectors/QuickTime/QuickTimeDetector";
+import { JavaDetector } from "../Model/Device/Detectors/Java/JavaDetector";
+import { RealPlayerDetector } from "../Model/Device/Detectors/RealPlayer/RealPlayerDetector";
 import { ModelBuilder } from "../Model/ModelBuilder";
 import { DeviceBuilder } from "../Model/Device/DeviceBuilder";
 import { ContentBuilder } from "../Model/Content/ContentBuilder";
@@ -31,9 +31,16 @@ import { XhrTransport } from "../Transport/XhrTransport";
 import { PixelTransport } from "../Transport/PixelTransport";
 import { BeaconTransport } from "../Transport/BeaconTransport";
 import { UrlDecoder } from "../Common/UrlDecoder";
-import {DataLayerElementAccessor} from "../Common/DataLayerElementAccessor";
-import {VisitorBuilder} from "../Model/Visitor/VistitorBuilder";
-import {CookieManager} from "../Cookie/CookieManager";
+import { PropertyAccessor } from "../Common/PropertyAccessor";
+import { VisitorBuilder } from "../Model/Visitor/VistitorBuilder";
+import { EncodingDetector } from "../Model/Device/Detectors/Encoding/EncodingDetector";
+import { ColorsDetector } from "../Model/Device/Detectors/Colors/ColorsDetector";
+import { LanguageDetector } from "../Model/Device/Detectors/Language/LanguageDetector";
+import { SessionManager} from "../Session/SessionManager";
+import { SessionCookieSerializer } from "../Session/Serializer/SessionCookieSerializer";
+import { SessionCookieStorage } from "../Session/Storage/SessionCookieStorage";
+import { VisitorCookieSerializer } from "../Session/Serializer/VisitorCookieSerializer";
+import { VisitorCookieStorage } from "../Session/Storage/VisitorCookieStorage";
 
 export let container = new Container();
 let global: any = window;
@@ -55,11 +62,11 @@ container.set("weba.global", (c: Container) => {
 container.set("weba.model_builder", (c: Container) => {
     let modelBuilder = new ModelBuilder();
     modelBuilder.addBuilder(new DeviceBuilder(c.get("weba.device_detector")));
-    modelBuilder.addBuilder(new ContentBuilder(document, c.get("weba.data_Layer_element_accessor")));
-    modelBuilder.addBuilder(new EventBuilder());
+    modelBuilder.addBuilder(new ContentBuilder(document, c.get("weba.property_accessor")));
+    modelBuilder.addBuilder(new EventBuilder(c.get("weba.config")));
     modelBuilder.addBuilder(new CustomDimensionsBuilder());
     modelBuilder.addBuilder(new CustomMetricsBuilder());
-    modelBuilder.addBuilder(new VisitorBuilder(c.get("weba.cookie_manager")));
+    modelBuilder.addBuilder(new VisitorBuilder(c.get("weba.session_manager")));
 
     return modelBuilder;
 });
@@ -84,6 +91,9 @@ container.set("weba.device_detector", () => {
     deviceDetector.addDetector(new QuickTimeDetector(navigator));
     deviceDetector.addDetector(new JavaDetector(navigator));
     deviceDetector.addDetector(new RealPlayerDetector(global, navigator));
+    deviceDetector.addDetector(new EncodingDetector(document));
+    deviceDetector.addDetector(new ColorsDetector(screen));
+    deviceDetector.addDetector(new LanguageDetector(navigator));
 
     return deviceDetector;
 });
@@ -124,10 +134,26 @@ container.set("weba.event_handler", (c: Container) => {
     return new EventHandlerImpl(c.get("weba.sender"), c.get("weba.model_builder"));
 });
 
-container.set("weba.data_Layer_element_accessor", () => {
-    return new DataLayerElementAccessor();
+container.set("weba.property_accessor", () => {
+    return new PropertyAccessor();
 });
 
-container.set("weba.cookie_manager", () => {
-    return new CookieManager(document);
+container.set("weba.session_cookie_serializer", (c) => {
+    return new SessionCookieSerializer(document, c.get("weba.config"));
+});
+
+container.set("weba.visitor_cookie_serializer", (c) => {
+    return new VisitorCookieSerializer(document, c.get("weba.config"));
+});
+
+container.set("weba.session_cookie_storage", (c) => {
+    return new SessionCookieStorage(document, c.get("weba.session_cookie_serializer"));
+});
+
+container.set("weba.visitor_cookie_storage", (c) => {
+    return new VisitorCookieStorage(document, c.get("weba.visitor_cookie_serializer"));
+});
+
+container.set("weba.session_manager", (c) => {
+    return new SessionManager(c.get("weba.session_cookie_storage"), c.get("weba.visitor_cookie_storage"));
 });

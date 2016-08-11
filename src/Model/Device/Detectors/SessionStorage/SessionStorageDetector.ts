@@ -9,7 +9,7 @@ export class SessionStorageDetector implements Detector {
     }
 
     public detect(device: Device): void {
-        let sessionStorageItem = "weba_sessionstorage_test";
+        let sessionStorageItem = "w_sessionstorage_test";
         try {
             this.sessionStorage.setItem(sessionStorageItem, true);
             this.sessionStorage.removeItem(sessionStorageItem);

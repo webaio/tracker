@@ -1,3 +1,3 @@
 export interface Transport {
-    send(data: Object);
+    send(data: any);
 }

@@ -11,11 +11,11 @@ export class Session {
         this._sessionEndedAt = sessionEndedAt;
     }
 
-    static createNewSession(visitAt: Date) {
+    static createNewSession(visitAt: Date): Session {
         return new Session(Uuid.generate(), visitAt, new Date(visitAt.getTime() + 1800000));
     }
 
-    static getExistingSession(sessionId: string, sessionStartedAt: number, sessionEndedAt: number) {
+    static getExistingSession(sessionId: string, sessionStartedAt: number, sessionEndedAt: number): Session {
         return new Session(sessionId, new Date(sessionStartedAt), new Date(sessionEndedAt));
     }
 
@@ -23,15 +23,15 @@ export class Session {
         this._sessionEndedAt = new Date(visitAt.getTime() + 1800000);
     }
 
-    get sessionId() {
+    get sessionId(): string {
         return this._sessionId;
     }
     
-    get sessionStartedAt() {
+    get sessionStartedAt(): Date {
         return this._sessionStartedAt;
     }
     
-    get sessionEndedAt() {
+    get sessionEndedAt(): Date {
         return this._sessionEndedAt;
     }
 }

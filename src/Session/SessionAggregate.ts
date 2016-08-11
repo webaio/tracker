@@ -10,35 +10,35 @@ export class SessionAggregate {
         this._visitor = visitor;
     }
 
-    static createNewSessionAndVisitor() {
-        let currentDate = new Date();
+    static createNewSessionAndVisitor(): SessionAggregate {
+        let currentDate: Date = new Date();
         let session: Session = Session.createNewSession(currentDate);
         let visitor: Visitor = Visitor.createNewVisitor(currentDate);
 
         return new SessionAggregate(session, visitor);
     }
 
-    static createNewSessionForExistingVisitor(visitor: Visitor) {
-        let currentDate = new Date();
+    static createNewSessionForExistingVisitor(visitor: Visitor): SessionAggregate {
+        let currentDate: Date = new Date();
         let session: Session = Session.createNewSession(currentDate);
         visitor.updateLastVisit(currentDate);
 
         return new SessionAggregate(session, visitor);
     }
 
-    static getExistingSession(visitor: Visitor, session: Session) {
-        let currentDate = new Date();
+    static getExistingSession(visitor: Visitor, session: Session): SessionAggregate {
+        let currentDate: Date = new Date();
         visitor.updateLastVisit(currentDate);
         session.renewSession(currentDate);
         
         return new SessionAggregate(session, visitor);
     }
 
-    get session() {
+    get session(): Session {
         return this._session;
     }
 
-    get visitor() {
+    get visitor(): Visitor {
         return this._visitor;
     }
 }

@@ -5,8 +5,7 @@ import { CustomMetric } from "../Model/CustomMetric/CustomMetric";
 import { Visitor } from "../Model/Visitor/Visitor";
 
 export class ModelNormalizer implements Normalizer {
-    public normalize(model: Model): Object {
-
+    public normalize(model: Model): any {
         let normalizedObject = {
             e: this.getEventName(model),
             l: this.getLanguage(model),
@@ -70,20 +69,6 @@ export class ModelNormalizer implements Normalizer {
         return model.content.title;
     }
 
-    private setCustomDimension(normalizedObject: any, model: Model) {
-        for (; model.customDimensions.length > 0; ) {
-            let customDimension: CustomDimension = model.customDimensions.shift();
-            normalizedObject["cd[" + customDimension.index + "]"] = customDimension.value;
-        }
-    }
-
-    private setCustomMetrics(normalizedObject: any, model: Model) {
-        for (; model.customMetrics.length > 0; ) {
-            let customMetric: CustomMetric = model.customMetrics.shift();
-            normalizedObject["cm[" + customMetric.index + "]"] = customMetric.value;
-        }
-    }
-
     private getDocumentEncoding(model: Model): string {
         return model.device.encoding;
     }
@@ -117,5 +102,19 @@ export class ModelNormalizer implements Normalizer {
 
     private getCacheBuster(): string {
         return Math.random().toString(36).replace(/[^a-z]+/g, "").substr(0, 10);
+    }
+
+    private setCustomDimension(normalizedObject: any, model: Model) {
+        for (; model.customDimensions.length > 0; ) {
+            let customDimension: CustomDimension = model.customDimensions.shift();
+            normalizedObject["cd[" + customDimension.index + "]"] = customDimension.value;
+        }
+    }
+
+    private setCustomMetrics(normalizedObject: any, model: Model) {
+        for (; model.customMetrics.length > 0; ) {
+            let customMetric: CustomMetric = model.customMetrics.shift();
+            normalizedObject["cm[" + customMetric.index + "]"] = customMetric.value;
+        }
     }
 }

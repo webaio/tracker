@@ -1,5 +1,5 @@
 export class PropertyAccessor {
-    public access(objectProperty: any, customObject: any, defaultValue: any) {
+    public access(objectProperty: string, customObject: any, defaultValue: any): any {
         if (customObject.hasOwnProperty(objectProperty)) {
             return customObject[objectProperty];
         }

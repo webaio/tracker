@@ -42,40 +42,40 @@ import { SessionCookieStorage } from "../Session/Storage/SessionCookieStorage";
 import { VisitorCookieSerializer } from "../Session/Serializer/VisitorCookieSerializer";
 import { VisitorCookieStorage } from "../Session/Storage/VisitorCookieStorage";
 
-export let container = new Container();
-let global: any = window;
+export let container: Container = new Container();
+let global: Window = window;
 
-container.set("weba.url_decoder", () => {
+container.set("w.url_decoder", () => {
     return new UrlDecoder();
 });
 
-container.set("weba.config", (c: Container) => {
-    let configReader = new ConfigReader(c.get("weba.url_decoder"));
+container.set("w.config", (c: Container) => {
+    let configReader = new ConfigReader(c.get("w.url_decoder"));
 
     return configReader.read(<HTMLScriptElement>document.getElementsByTagName("script")[0]);
 });
 
-container.set("weba.global", (c: Container) => {
-    return global[c.get("weba.config").globalFunctionName];
+container.set("w.global", (c: Container) => {
+    return global[c.get("w.config").globalFunctionName];
 });
 
-container.set("weba.model_builder", (c: Container) => {
+container.set("w.model_builder", (c: Container) => {
     let modelBuilder = new ModelBuilder();
-    modelBuilder.addBuilder(new DeviceBuilder(c.get("weba.device_detector")));
-    modelBuilder.addBuilder(new ContentBuilder(document, c.get("weba.property_accessor")));
-    modelBuilder.addBuilder(new EventBuilder(c.get("weba.config")));
+    modelBuilder.addBuilder(new DeviceBuilder(c.get("w.device_detector")));
+    modelBuilder.addBuilder(new ContentBuilder(document, c.get("w.property_accessor")));
+    modelBuilder.addBuilder(new EventBuilder(c.get("w.config")));
     modelBuilder.addBuilder(new CustomDimensionsBuilder());
     modelBuilder.addBuilder(new CustomMetricsBuilder());
-    modelBuilder.addBuilder(new VisitorBuilder(c.get("weba.session_manager")));
+    modelBuilder.addBuilder(new VisitorBuilder(c.get("w.session_manager")));
 
     return modelBuilder;
 });
 
-container.set("weba.tracker", (c: Container) => {
-    return new Tracker(c.get("weba.global"), c.get("weba.event_handler"));
+container.set("w.tracker", (c: Container) => {
+    return new Tracker(c.get("w.global"), c.get("w.event_handler"));
 });
 
-container.set("weba.device_detector", () => {
+container.set("w.device_detector", () => {
     let deviceDetector = new DeviceDetector();
     deviceDetector.addDetector(new ScreenSizeDetector(global));
     deviceDetector.addDetector(new WindowSizeDetector(global));
@@ -98,62 +98,62 @@ container.set("weba.device_detector", () => {
     return deviceDetector;
 });
 
-container.set("weba.xhr_transport", (c: Container) => {
-    return new XhrTransport(c.get("weba.config"));
+container.set("w.xhr_transport", (c: Container) => {
+    return new XhrTransport(c.get("w.config"));
 });
 
-container.set("weba.pixel_transport", (c: Container) => {
-    return new PixelTransport(c.get("weba.config"));
+container.set("w.pixel_transport", (c: Container) => {
+    return new PixelTransport(c.get("w.config"));
 });
 
-container.set("weba.beacon_transport", (c: Container) => {
-    return new BeaconTransport(navigator, c.get("weba.config"));
+container.set("w.beacon_transport", (c: Container) => {
+    return new BeaconTransport(navigator, c.get("w.config"));
 });
 
-container.set("weba.transport_factory", (c: Container) => {
+container.set("w.transport_factory", (c: Container) => {
    return new TransportFactory(
-       c.get("weba.xhr_transport"),
-       c.get("weba.pixel_transport"),
-       c.get("weba.beacon_transport")
+       c.get("w.xhr_transport"),
+       c.get("w.pixel_transport"),
+       c.get("w.beacon_transport")
    );
 });
 
-container.set("weba.normalizer", () => {
+container.set("w.normalizer", () => {
     return new ModelNormalizer();
 });
 
-container.set("weba.serializer_factory", () => {
+container.set("w.serializer_factory", () => {
     return new SerializerFactory();
 });
 
-container.set("weba.sender", (c: Container) => {
-    return new Sender(c.get("weba.transport_factory"), c.get("weba.serializer_factory"), c.get("weba.normalizer"));
+container.set("w.sender", (c: Container) => {
+    return new Sender(c.get("w.transport_factory"), c.get("w.serializer_factory"), c.get("w.normalizer"));
 });
 
-container.set("weba.event_handler", (c: Container) => {
-    return new EventHandlerImpl(c.get("weba.sender"), c.get("weba.model_builder"));
+container.set("w.event_handler", (c: Container) => {
+    return new EventHandlerImpl(c.get("w.sender"), c.get("w.model_builder"));
 });
 
-container.set("weba.property_accessor", () => {
+container.set("w.property_accessor", () => {
     return new PropertyAccessor();
 });
 
-container.set("weba.session_cookie_serializer", (c) => {
-    return new SessionCookieSerializer(document, c.get("weba.config"));
+container.set("w.session_cookie_serializer", (c) => {
+    return new SessionCookieSerializer(document, c.get("w.config"));
 });
 
-container.set("weba.visitor_cookie_serializer", (c) => {
-    return new VisitorCookieSerializer(document, c.get("weba.config"));
+container.set("w.visitor_cookie_serializer", (c) => {
+    return new VisitorCookieSerializer(document, c.get("w.config"));
 });
 
-container.set("weba.session_cookie_storage", (c) => {
-    return new SessionCookieStorage(document, c.get("weba.session_cookie_serializer"));
+container.set("w.session_cookie_storage", (c) => {
+    return new SessionCookieStorage(document, c.get("w.session_cookie_serializer"));
 });
 
-container.set("weba.visitor_cookie_storage", (c) => {
-    return new VisitorCookieStorage(document, c.get("weba.visitor_cookie_serializer"));
+container.set("w.visitor_cookie_storage", (c) => {
+    return new VisitorCookieStorage(document, c.get("w.visitor_cookie_serializer"));
 });
 
-container.set("weba.session_manager", (c) => {
-    return new SessionManager(c.get("weba.session_cookie_storage"), c.get("weba.visitor_cookie_storage"));
+container.set("w.session_manager", (c) => {
+    return new SessionManager(c.get("w.session_cookie_storage"), c.get("w.visitor_cookie_storage"));
 });

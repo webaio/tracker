@@ -12,14 +12,13 @@ export class VisitorCookieSerializer {
             + ";max-age=" + this.config.visitorLifetimeInSeconds;
     }
 
-    public deserialize() {
-        let value = "; " + this.document.cookie;
-        let parts = value.split("; " + this.config.visitorCookieName + "=");
+    public deserialize(): Visitor {
+        let value: string = "; " + this.document.cookie;
+        let parts: Array<string> = value.split("; " + this.config.visitorCookieName + "=");
 
         if (parts.length === 2) {
-            let object = parts.pop().split(";").shift();
-
-            let visitorElements = object.split(".");
+            let object: string = parts.pop().split(";").shift();
+            let visitorElements: Array<string> = object.split(".");
 
             return Visitor.getCurrentVisitor(visitorElements[0], Number(visitorElements[1]), Number(visitorElements[2]));
         }

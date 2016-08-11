@@ -7,7 +7,7 @@ export class DeviceBuilder implements Builder {
     constructor(private deviceDetector: DeviceDetector) {}
 
     build(model: Model, dataLayerElementPayload: any) {
-        let device = new Device();
+        let device: Device = new Device();
         this.deviceDetector.detect(device);
         model.device = device;
     }

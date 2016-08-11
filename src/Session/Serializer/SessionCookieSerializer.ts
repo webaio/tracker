@@ -10,14 +10,13 @@ export class SessionCookieSerializer {
             + ";max-age=" + this.config.sessionLifetimeInSeconds;
     }
 
-    public deserialize() {
-        let value = "; " + this.document.cookie;
-        let parts = value.split("; " + this.config.sessionCookieName + "=");
+    public deserialize(): Session {
+        let value: string = "; " + this.document.cookie;
+        let parts: Array<string> = value.split("; " + this.config.sessionCookieName + "=");
 
         if (parts.length === 2) {
-            let object = parts.pop().split(";").shift();
-
-            let sessionElements = object.split(".");
+            let object: string = parts.pop().split(";").shift();
+            let sessionElements: Array<string> = object.split(".");
 
             return Session.getExistingSession(sessionElements[0], Number(sessionElements[1]), Number(sessionElements[2]));
         }

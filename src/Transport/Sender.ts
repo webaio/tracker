@@ -13,7 +13,7 @@ export class Sender {
         private normalizer: ModelNormalizer
     ) {}
 
-    public send(transportType: Transports, model: Model): void {
+    public send(transportType: Transports, model: Model) {
         let transport: Transport = this.transportFactory.create(transportType);
         let serializer: Serializer = this.serializerFactory.createFromTransport(transportType);
         transport.send(serializer.serialize(this.normalizer.normalize(model)));

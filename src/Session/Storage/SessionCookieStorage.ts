@@ -8,7 +8,7 @@ export class SessionCookieStorage {
         this.document.cookie = this.sessionCookieSerializer.serialize(session);
     }
 
-    public find() {
+    public find(): Session {
         return this.sessionCookieSerializer.deserialize();
     }
 }

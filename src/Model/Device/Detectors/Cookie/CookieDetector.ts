@@ -1,7 +1,7 @@
 import { Detector } from "../../Detector";
 import { Device } from "../../Device";
 
-const WEBA_COOKIE = "weba_test";
+const W_COOKIE = "w_test";
 
 export class CookieDetector implements Detector {
     private document: Document;
@@ -15,9 +15,9 @@ export class CookieDetector implements Detector {
     public detect(device: Device): void {
         let cookieEnabled = this.navigator.cookieEnabled;
         if (typeof cookieEnabled === "undefined" || !cookieEnabled) {
-            this.document.cookie = WEBA_COOKIE;
-            cookieEnabled = this.document.cookie.indexOf(WEBA_COOKIE) !== -1;
-            this.deleteCookie(WEBA_COOKIE);
+            this.document.cookie = W_COOKIE;
+            cookieEnabled = this.document.cookie.indexOf(W_COOKIE) !== -1;
+            this.deleteCookie(W_COOKIE);
         }
 
         device.isCookie = cookieEnabled;

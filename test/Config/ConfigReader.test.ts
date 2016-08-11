@@ -13,8 +13,8 @@ describe("ConfigReader", () => {
         expect(config.domain).to.equal("//localhost");
         expect(config.trackerId).to.equal("WEBA-001");
         expect(config.globalFunctionName).to.equal("weba");
-        expect(config.sessionCookieName).to.equal("_weba_session");
-        expect(config.visitorCookieName).to.equal("_weba_visitor");
+        expect(config.sessionCookieName).to.equal("_w_session");
+        expect(config.visitorCookieName).to.equal("_w_visitor");
         expect(config.sessionLifetimeInSeconds).to.equal(1800);
         expect(config.visitorLifetimeInSeconds).to.equal(31104000);
         done();

@@ -4,15 +4,11 @@ import { QueryStringSerializer } from "../Serializer/QueryStringSerializer";
 import { Transports } from "../Transport/Transports";
 
 export class SerializerFactory {
-    public createFromTransport(transportType: Transports) {
-        let serializer: Serializer;
-        
+    public createFromTransport(transportType: Transports): Serializer {
         if (transportType === Transports.PIXEL_TRANSPORT) {
-            serializer = new QueryStringSerializer();
-        } else {
-            serializer = new JsonSerializer();
+            return new QueryStringSerializer();
         }
 
-        return serializer;
+        return new JsonSerializer();
     }
 }

@@ -1,4 +1,4 @@
 export interface Serializer {
-    serialize(data: Object): string;
-    deserialize(serialized: string): Object;
+    serialize(data: any): string;
+    deserialize(serialized: string): any;
 }

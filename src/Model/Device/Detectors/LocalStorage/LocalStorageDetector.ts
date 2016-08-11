@@ -9,7 +9,7 @@ export class LocalStorageDetector implements Detector {
     }
 
     public detect(device: Device): void {
-        let localStorageItem = "weba_localstorage_test";
+        let localStorageItem = "w_localstorage_test";
         try {
             this.localStorage.setItem(localStorageItem, true);
             this.localStorage.removeItem(localStorageItem);

@@ -7,7 +7,7 @@ export class ContentBuilder implements Builder {
     constructor(private document: Document, private accessor: PropertyAccessor) {}
     
     build(model: Model, dataLayerElementPayload: any) {
-        let content = new Content();
+        let content: Content = new Content();
         content.location = this.accessor.access("location", dataLayerElementPayload, this.document.location.href);
         content.title = this.accessor.access("title", dataLayerElementPayload, this.document.title);
         content.host = this.accessor.access("host", dataLayerElementPayload, "");

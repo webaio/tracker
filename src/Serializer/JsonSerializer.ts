@@ -1,11 +1,11 @@
 import { Serializer } from "./Serializer";
 
 export class JsonSerializer implements Serializer {
-    public serialize(data: Object): string {
+    public serialize(data: any): string {
         return JSON.stringify(data);
     }
 
-    public deserialize(serialized: string): Object {
+    public deserialize(serialized: string): any {
         return JSON.parse(serialized);
     }
 }

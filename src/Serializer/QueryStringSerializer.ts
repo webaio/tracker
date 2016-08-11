@@ -1,19 +1,19 @@
 import { Serializer } from "./Serializer";
 
 export class QueryStringSerializer implements Serializer {
-    public serialize(data: Object): string {
-        let str = [];
+    public serialize(data: any): string {
+        let parameters: Array<any> = [];
 
         for (let item in data) {
             if (data.hasOwnProperty(item) && encodeURIComponent(data[item])) {
-                str.push(encodeURIComponent(item) + "=" + encodeURIComponent(data[item]));
+                parameters.push(encodeURIComponent(item) + "=" + encodeURIComponent(data[item]));
             }
         }
 
-        return str.join("&");
+        return parameters.join("&");
     }
 
-    public deserialize(serialized: string): Object {
+    public deserialize(serialized: string): any {
         return undefined;
     }
 }

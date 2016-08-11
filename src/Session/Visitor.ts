@@ -11,11 +11,15 @@ export class Visitor {
         this._lastVisitAt = lastVisitAt;
     }
 
-    static createNewVisitor(visitAt: Date) {
+    static createNewVisitor(visitAt: Date): Visitor {
         return new Visitor(Uuid.generate(), visitAt, visitAt);
     }
 
-    static getCurrentVisitor(visitorId: string, firstVisitAtInMilliseconds: number, lastVisitAtInMilliseconds: number) {
+    static getCurrentVisitor(
+        visitorId: string,
+        firstVisitAtInMilliseconds: number,
+        lastVisitAtInMilliseconds: number
+    ): Visitor {
         return new Visitor(visitorId, new Date(firstVisitAtInMilliseconds), new Date(lastVisitAtInMilliseconds));
     }
 
@@ -23,15 +27,15 @@ export class Visitor {
         this._lastVisitAt = visitAt;
     }
     
-    get visitorId() {
+    get visitorId(): string {
         return this._visitorId;
     }
 
-    get firstVisitAt() {
+    get firstVisitAt(): Date {
         return this._firstVisitAt;
     }
 
-    get lastVisitAt() {
+    get lastVisitAt(): Date {
         return this._lastVisitAt;
     }
 }

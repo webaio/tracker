@@ -6,7 +6,7 @@ export class ConfigReader {
 
     public read(scriptElement: HTMLScriptElement): Config {
         let config: Config = new Config();
-        let urlParams = this.urlDecoder.getParams(scriptElement.src);
+        let urlParams: any = this.urlDecoder.getParams(scriptElement.src);
         config.trackerId = urlParams.t;
         config.domain = this.urlDecoder.getDomain(scriptElement.src);
         config.globalFunctionName = urlParams.g;

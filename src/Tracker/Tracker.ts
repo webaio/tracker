@@ -7,16 +7,18 @@ export class Tracker {
     constructor(private global: any, private eventHandler: EventHandler) {}
 
     public run() {
-        let dataLayerCallback = this.global;
-        let queue = dataLayerCallback.q;
-        let push = dataLayerCallback.q.push;
+        if (this.global !== undefined) {
+            let dataLayerCallback = this.global;
+            let queue = dataLayerCallback.q;
+            let push = dataLayerCallback.q.push;
 
-        this.process(new Queue(queue));
-
-        queue.push = (...dataLayerElements) => {
-            push.apply(queue, Array.prototype.slice.call(dataLayerElements, 0));
             this.process(new Queue(queue));
-        };
+
+            queue.push = (...dataLayerElements) => {
+                push.apply(queue, Array.prototype.slice.call(dataLayerElements, 0));
+                this.process(new Queue(queue));
+            };
+        }
     }
 
     private process(queue: Queue) {

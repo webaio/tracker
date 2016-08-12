@@ -5,4 +5,5 @@ node_js:
 
 sudo: false
 
-script: npm test
+script:
+  - npm test

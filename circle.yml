@@ -1,0 +1,12 @@
+machine:
+  node:
+    version: 6.3.1
+  environment:
+    COVERALLS_REPO_TOKEN: 11elnt3H9xQ5kcDsfkLRhodOTuhgMlI2C
+    CIRCLE_TEST_REPORTS: coverage
+
+general:
+  artifacts:
+    - "dist"
+    - "coverage"
+    

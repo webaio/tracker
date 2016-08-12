@@ -7,9 +7,13 @@ export class ConfigReader {
     public read(scriptElement: HTMLScriptElement): Config {
         let config: Config = new Config();
         let urlParams: any = this.urlDecoder.getParams(scriptElement.src);
-        config.trackerId = urlParams.t;
+        
+        if (urlParams.hasOwnProperty("t") && urlParams.hasOwnProperty("g")) {
+            config.trackerId = urlParams.t;
+            config.globalFunctionName = urlParams.g;
+        }
+
         config.domain = this.urlDecoder.getDomain(scriptElement.src);
-        config.globalFunctionName = urlParams.g;
 
         return config;
     }

@@ -4,9 +4,14 @@ machine:
   environment:
     COVERALLS_REPO_TOKEN: 11elnt3H9xQ5kcDsfkLRhodOTuhgMlI2C
     CIRCLE_TEST_REPORTS: coverage
+    SAUCE_USERNAME: weba_io
+    SAUCE_ACCESS_KEY: a8cfb810-adea-4cea-a049-251b3b785c4e
 
 general:
   artifacts:
     - "dist"
     - "coverage"
-    
+
+test:
+  post:
+    - npm run saucelabs

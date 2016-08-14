@@ -82,7 +82,7 @@ gulp.task('build', function(cb) {
 // Tests                                                                  //
 // =======================================================================//
 
-gulp.task('unit-test-karma', function () {
+gulp.task('unit-test', function () {
     return gulp
         .src([
             '.tmp/src/**/*.js',
@@ -101,5 +101,20 @@ gulp.task('cover', function() {
 });
 
 gulp.task('test', function(cb) {
-    runSequence('build', 'unit-test-karma', 'cover', cb);
+    runSequence('build', 'unit-test', 'cover', cb);
+});
+
+// =======================================================================//
+// Saucelabs                                                              //
+// =======================================================================//
+
+gulp.task('unit-test-saucelabs', function () {
+    return gulp
+        .src([
+            '.tmp/test/**/*.test.js'
+        ])
+        .pipe(karma({
+            configFile: 'saucelabs.conf.js',
+            action: 'run'
+        }));
 });

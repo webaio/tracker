@@ -41,6 +41,7 @@ import { SessionCookieSerializer } from "../Session/Serializer/SessionCookieSeri
 import { SessionCookieStorage } from "../Session/Storage/SessionCookieStorage";
 import { VisitorCookieSerializer } from "../Session/Serializer/VisitorCookieSerializer";
 import { VisitorCookieStorage } from "../Session/Storage/VisitorCookieStorage";
+import { ObjectMerger } from "../Common/ObjectMerger";
 
 export let container: Container = new Container();
 let global: Window = window;
@@ -72,7 +73,7 @@ container.set("w.model_builder", (c: Container) => {
 });
 
 container.set("w.tracker", (c: Container) => {
-    return new Tracker(c.get("w.global"), c.get("w.event_handler"));
+    return new Tracker(c.get("w.global"), c.get("w.event_handler"), c.get("w.object_merger"));
 });
 
 container.set("w.device_detector", () => {
@@ -136,6 +137,10 @@ container.set("w.event_handler", (c: Container) => {
 
 container.set("w.property_accessor", () => {
     return new PropertyAccessor();
+});
+
+container.set("w.object_merger", () => {
+    return new ObjectMerger();
 });
 
 container.set("w.session_cookie_serializer", (c) => {

@@ -1,10 +1,11 @@
 import { Queue } from "../Queue/Queue";
 import { EventHandler } from "../Event/Handler/EventHandler";
+import { ObjectMerger } from "../Common/ObjectMerger";
 
 export class Tracker {
     public static get SEND_COMMAND(): string { return "send"; }
 
-    constructor(private global: any, private eventHandler: EventHandler) {}
+    constructor(private global: any, private eventHandler: EventHandler, private objectMerger: ObjectMerger) {}
 
     public run() {
         if (this.global !== undefined) {
@@ -26,13 +27,13 @@ export class Tracker {
         
         queue.consume((index, dataLayerElement) => {
             if (dataLayerElement.length >= 2) {
-                dataLayerElementPayload = Object.assign(dataLayerElementPayload, dataLayerElement[1]);
+                dataLayerElementPayload = this.objectMerger.merge(dataLayerElementPayload, dataLayerElement[1]);
                 
                 if (dataLayerElement[0] === Tracker.SEND_COMMAND) {
                     this.global.q.splice(index, 1);
                     this.eventHandler.handle(dataLayerElementPayload);
                 }
-            }
+            }   
         });
     }
 }

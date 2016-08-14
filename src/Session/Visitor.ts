@@ -5,12 +5,6 @@ export class Visitor {
     private _firstVisitAt: Date;
     private _lastVisitAt: Date;
 
-    constructor(visitorId: string, firstVisitAt: Date, lastVisitAt: Date) {
-        this._visitorId = visitorId;
-        this._firstVisitAt = firstVisitAt;
-        this._lastVisitAt = lastVisitAt;
-    }
-
     static createNewVisitor(visitAt: Date): Visitor {
         return new Visitor(Uuid.generate(), visitAt, visitAt);
     }
@@ -21,6 +15,12 @@ export class Visitor {
         lastVisitAtInMilliseconds: number
     ): Visitor {
         return new Visitor(visitorId, new Date(firstVisitAtInMilliseconds), new Date(lastVisitAtInMilliseconds));
+    }
+
+    constructor(visitorId: string, firstVisitAt: Date, lastVisitAt: Date) {
+        this._visitorId = visitorId;
+        this._firstVisitAt = firstVisitAt;
+        this._lastVisitAt = lastVisitAt;
     }
 
     public updateLastVisit(visitAt: Date) {

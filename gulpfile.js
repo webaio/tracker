@@ -22,8 +22,10 @@ gulp.task('lint', function() {
             __dirname + '/src/**/*.ts',
             __dirname + '/test/**/*.test.ts'
         ])
-        .pipe(tslint())
-        .pipe(tslint.report('verbose'));
+        .pipe(tslint({
+            formatter: "verbose"
+        }))
+        .pipe(tslint.report());
 });
 
 // =======================================================================//

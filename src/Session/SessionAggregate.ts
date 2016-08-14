@@ -5,11 +5,6 @@ export class SessionAggregate {
     private _session: Session;
     private _visitor: Visitor;
 
-    constructor(session: Session, visitor: Visitor) {
-        this._session = session;
-        this._visitor = visitor;
-    }
-
     static createNewSessionAndVisitor(): SessionAggregate {
         let currentDate: Date = new Date();
         let session: Session = Session.createNewSession(currentDate);
@@ -30,8 +25,13 @@ export class SessionAggregate {
         let currentDate: Date = new Date();
         visitor.updateLastVisit(currentDate);
         session.renewSession(currentDate);
-        
+
         return new SessionAggregate(session, visitor);
+    }
+
+    constructor(session: Session, visitor: Visitor) {
+        this._session = session;
+        this._visitor = visitor;
     }
 
     get session(): Session {

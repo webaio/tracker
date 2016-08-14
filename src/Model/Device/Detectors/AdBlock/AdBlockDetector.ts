@@ -22,8 +22,8 @@ const baitStyle: string = `
 `;
 
 export class AdBlockDetector implements Detector {
+    public bait: HTMLDivElement;
     private window: any;
-    private bait: HTMLDivElement;
 
     constructor(window: any) {
         this.window = window;
@@ -56,14 +56,6 @@ export class AdBlockDetector implements Detector {
         bait.setAttribute("class", baitClass);
         bait.setAttribute("style", baitStyle);
         this.bait = this.window.document.body.appendChild(bait);
-
-        this.bait.offsetParent = undefined;
-        this.bait.offsetHeight = undefined;
-        this.bait.offsetLeft = undefined;
-        this.bait.offsetTop = undefined;
-        this.bait.offsetWidth = undefined;
-        this.bait.clientHeight = undefined;
-        this.bait.clientWidth = undefined;
     };
 
     private destroyBait(): void {

@@ -51,8 +51,7 @@ export let adBlockWindowValidAbp = {
                 return;
             }
         }
-    },
-    getComputedStyle: () => baitValid
+    }
 };
 
 export let adBlockWindowInvalid = {
@@ -125,7 +124,7 @@ export let flashNavigatorValidNoFlash = {
 export let flashNavigatorInvalid = {};
 
 export let silverlightWindowValid = {
-    ActiveXObject: () => {
+    ActiveXObject: (arg) => {
         return {}
     }
 };
@@ -146,11 +145,7 @@ export let silverlightNavigatorValidNoSL = {
 };
 
 export let cookieDocument = {
-    cookie: () => {
-        return {
-            indexOf: () => 0
-        }
-    }
+    cookie: "test=test"
 };
 
 export let cookieNavigatorValid = {
@@ -223,3 +218,15 @@ export let realPlayerfWindowValid = {
 };
 
 export let realPlayerfWindowInalid = {};
+
+export let encodingDocument = {
+    charset: "UTF-8"
+};
+
+export let screenColors = {
+    colorDepth: 24
+};
+
+export let languageNavigator = {
+    userLanguage: "en"
+};

@@ -3,12 +3,12 @@
 import { expect } from "chai";
 import { ModelNormalizer } from "../../src/Normalizer/ModelNormalizer";
 import { Model } from "../../src/Model/Model";
-import {CustomDimension} from "../../src/Model/CustomDimension/CustomDimension";
-import {CustomMetric} from "../../src/Model/CustomMetric/CustomMetric";
-import {Content} from "../../src/Model/Content/Content";
-import {Device} from "../../src/Model/Device/Device";
-import {Event} from "../../src/Model/Event/Event";
-import {Visitor} from "../../src/Model/Visitor/Visitor";
+import { CustomDimension } from "../../src/Model/CustomDimension/CustomDimension";
+import { CustomMetric } from "../../src/Model/CustomMetric/CustomMetric";
+import { Content } from "../../src/Model/Content/Content";
+import { Device } from "../../src/Model/Device/Device";
+import { Event } from "../../src/Model/Event/Event";
+import { Visitor } from "../../src/Model/Visitor/Visitor";
 
 describe("ModelNormalizer", () => {
     it("should normalize model to object", (done) => {

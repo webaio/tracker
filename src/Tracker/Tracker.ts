@@ -8,6 +8,7 @@ export class Tracker {
     constructor(private global: any, private eventHandler: EventHandler, private objectMerger: ObjectMerger) {}
 
     public run() {
+
         if (this.global !== undefined) {
             let dataLayerCallback = this.global;
             let queue = dataLayerCallback.q;

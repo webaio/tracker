@@ -2,7 +2,7 @@ export class Container {
     private items: any = {};
 
     public get(key: string): any {
-        if (!this.has(key)) {
+        if (!this._has(key)) {
             throw new Error(`Identifier "${key}" is not defined.`);
         }
 
@@ -15,7 +15,7 @@ export class Container {
         this.items[key] = val;
     }
 
-    private has(key: string): boolean {
+    private _has(key: string): boolean {
         return this.items.hasOwnProperty(key);
     }
 }

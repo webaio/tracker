@@ -12,6 +12,6 @@ general:
     - "dist"
     - "coverage"
 
-test:
-  post:
-    - npm run saucelabs
+#test:
+#  post:
+#    - npm run saucelabs

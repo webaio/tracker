@@ -1,10 +1,10 @@
 {
-  "name": "weba_tracker",
-  "version": "0.0.1",
-  "description": "Tracker for weba.io",
-  "main": "src/bootstrap.ts",
-  "author": "hejtercode",
-  "license": "ISC",
+  "name": "tracker",
+  "version": "1.0.0",
+  "description": "Javascript tracker for weba.io application",
+  "main": "src/index.ts",
+  "author": "weba",
+  "license": "MIT",
   "scripts": {
     "pretest": "gulp lint",
     "postinstall": "typings install",

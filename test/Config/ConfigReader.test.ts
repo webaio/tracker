@@ -11,8 +11,8 @@ describe("ConfigReader", () => {
         let config = configReader.read(<HTMLScriptElement>Mocks.htmlElement);
 
         expect(config.domain).to.equal("//localhost");
-        expect(config.trackerId).to.equal("WEBA-001");
-        expect(config.globalFunctionName).to.equal("weba");
+        expect(config.trackerId).to.equal("TRACKER-001");
+        expect(config.globalFunctionName).to.equal("global");
         expect(config.sessionCookieName).to.equal("_w_session");
         expect(config.visitorCookieName).to.equal("_w_visitor");
         expect(config.sessionLifetimeInSeconds).to.equal(1800);

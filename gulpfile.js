@@ -62,12 +62,12 @@ gulp.task('compile', function(cb) {
 gulp.task('bundle', function () {
     var b = browserify({
         standalone : 'tracker',
-        entries: __dirname + '/.tmp/src/Weba.js',
+        entries: __dirname + '/.tmp/src/index.js',
         debug: false
     });
 
     return b.bundle()
-        .pipe(source('Weba.js'))
+        .pipe(source('index.js'))
         .pipe(buffer())
         .pipe(uglify({ preserveComments : false }))
         .pipe(rename({ extname: '.min.js' }))

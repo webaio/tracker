@@ -41,36 +41,6 @@ var customLaunchers = {
         platform: 'Windows 7',
         version: '12.12'
     },
-    'firefox-linux': {
-        base: 'SauceLabs',
-        browserName: 'Firefox',
-        platform: 'Linux',
-        version: '21'
-    },
-    'chrome-linux': {
-        base: 'SauceLabs',
-        browserName: 'Chrome',
-        platform: 'Linux',
-        version: '26'
-    },
-    'opera-linux': {
-        base: 'SauceLabs',
-        browserName: 'Opera',
-        platform: 'Linux',
-        version: '12.15'
-    },
-    'firefox-osx': {
-        base: 'SauceLabs',
-        browserName: 'Firefox',
-        platform: 'OS X 10.8',
-        version: '21'
-    },
-    'chrome-osx': {
-        base: 'SauceLabs',
-        browserName: 'Chrome',
-        platform: 'OS X 10.8',
-        version: '31'
-    },
     'safari': {
         base: 'SauceLabs',
         browserName: 'Safari',
@@ -99,6 +69,10 @@ module.exports = function (config) {
 
         browserNoActivityTimeout: 500000,
 
+        captureTimeout: 300000,
+
+        browserDisconnectTolerance: 5,
+
         customLaunchers: customLaunchers,
 
         sauceLabs: {
@@ -109,7 +83,7 @@ module.exports = function (config) {
 
         browsers: Object.keys(customLaunchers),
 
-        singleRun: false
+        singleRun: true
 
     });
 };

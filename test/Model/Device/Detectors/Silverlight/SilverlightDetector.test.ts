@@ -2,8 +2,8 @@
 
 import { expect } from "chai";
 import * as Mocks from "../detectors.mock";
-import {SilverlightDetector} from "../../../../../src/Model/Device/Detectors/Silverlight/SilverlightDetector";
-import {Device} from "../../../../../src/Model/Device/Device";
+import { SilverlightDetector } from "../../../../../src/Model/Device/Detectors/Silverlight/SilverlightDetector";
+import { Device } from "../../../../../src/Model/Device/Device";
 
 describe("SilverlightDetector", () => {
     it("should properly detect SilverLight plugin by creating ActiveXObject", (done) => {

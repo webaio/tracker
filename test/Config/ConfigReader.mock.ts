@@ -1,8 +1,8 @@
 export let urlDecoder = {
     getParams: (url) => {
         let result = [];
-        result["t"] = "WEBA-001";
-        result["g"] = "weba";
+        result["t"] = "TRACKER-001";
+        result["g"] = "global";
 
         return result;
     },
@@ -13,5 +13,5 @@ export let urlDecoder = {
 };
 
 export let htmlElement = {
-    src: "//localhost/weba.js?t=WEBA-01&g=g"
+    src: "//localhost/index.js?t=TRACKER-001&g=g"
 };

@@ -21,11 +21,11 @@ export class SilverlightDetector implements Detector {
             try {
                 detected = !!(this.navigator.plugins[SILVERLIGHT_PLUGIN_NAME]);
 
-                if (!detected) {
+                if (detected) {
                     tryIE = true;
                 }
             } catch (e) {
-                tryIE = true;
+                tryIE = false;
             }
 
             if (tryIE) {
@@ -34,8 +34,8 @@ export class SilverlightDetector implements Detector {
             }
         } finally {
             device.isSilverlight = detected;
-
-            return;
         }
+
+        device.isSilverlight = detected;
     }
 }

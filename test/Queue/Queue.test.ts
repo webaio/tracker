@@ -20,4 +20,9 @@ describe("Queue", () => {
             }
         });
     });
+
+    it("works for empty queue", (done) => {
+        new Queue();
+        done();
+    });
 });

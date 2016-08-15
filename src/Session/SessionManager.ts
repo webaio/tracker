@@ -1,6 +1,8 @@
 import { SessionAggregate } from "./SessionAggregate";
 import { SessionCookieStorage } from "./Storage/SessionCookieStorage";
 import { VisitorCookieStorage } from "./Storage/VisitorCookieStorage";
+import { Session } from "./Session";
+import { Visitor } from "./Visitor";
 
 export class SessionManager {
     constructor(
@@ -13,9 +15,9 @@ export class SessionManager {
         let visitor = this.visitorCookieStorage.find();
         let sessionAggregate: SessionAggregate;
 
-        if (session && visitor) {
+        if (session instanceof Session && visitor instanceof Visitor) {
             sessionAggregate = SessionAggregate.getExistingSession(visitor, session);
-        } else if (!session && visitor) {
+        } else if (!session && visitor instanceof Visitor) {
             sessionAggregate = SessionAggregate.createNewSessionForExistingVisitor(visitor);
         } else {
             sessionAggregate = SessionAggregate.createNewSessionAndVisitor();

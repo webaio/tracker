@@ -4,14 +4,14 @@ export class UrlDecoder {
     }
 
     public getParams(url: string): any {
-        let params: string = this.getQueryParams(url),
+        let params: string = this._getQueryParams(url),
             result: any = {}, param: any;
 
         if (!params) {
             return result;
         }
 
-        let pairs: Array<string> = this.splitParams(params);
+        let pairs: Array<string> = this._splitParams(params);
 
         for (let i = 0; i < pairs.length; i++) {
             param = pairs[i].split("=");
@@ -21,11 +21,11 @@ export class UrlDecoder {
         return result;
     }
 
-    private getQueryParams(src: string): string {
+    private _getQueryParams(src: string): string {
         return src.replace(/^[^\?]+\??/, "");
     }
 
-    private splitParams(src: string): Array<string> {
+    private _splitParams(src: string): Array<string> {
         return src.split("&");
     }
 }

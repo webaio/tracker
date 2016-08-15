@@ -21,10 +21,6 @@ export class ObjectMerger {
 
         }
 
-        for (let a = 2, l = arguments.length; a < l; a++) {
-            this.merge(target, arguments[a]);
-        }
-
         return target;
     };
 }

@@ -80,7 +80,7 @@ describe("ModelNormalizer", () => {
         expect(result.cb).to.have.length.below(11);
         expect(result.vid).to.equal("9f33535c-5e09-4309-8f37-daa8793b163a");
         expect(result.sid).to.equal("cb04110e-6907-4ab9-b91d-b9b830f160b3");
-        expect(result.st).to.equal("1470947640.1470977640.1470947650.1470948640");
+        expect(result.st).to.equal("1470947640.1470977640.1470948640.1470947650");
         expect(result["cd[1]"]).to.equal("test1");
         expect(result["cm[1]"]).to.equal(100);
 

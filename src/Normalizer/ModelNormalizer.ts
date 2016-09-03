@@ -96,8 +96,8 @@ export class ModelNormalizer implements Normalizer {
     private getSessionTime(model: Model): string {
         let visitor: Visitor = model.visitor;
 
-        return visitor.firstVisitAt + "." + visitor.sessionStartedAt + "." + visitor.currentVisitAt + "."
-            + visitor.sessionEndedAt;
+        return visitor.firstVisitAt + "." + visitor.sessionStartedAt + "." + visitor.sessionEndedAt + "."
+            + visitor.currentVisitAt;
     }
 
     private getCacheBuster(): string {

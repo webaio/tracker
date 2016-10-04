@@ -1,5 +1,11 @@
 export class Container {
-    private items: any = {};
+    private items: Array<any>;
+    private instanced: Array<any>;
+
+    constructor() {
+        this.instanced = [];
+        this.items = [];
+    }
 
     public get(key: string): any {
         if (!this._has(key)) {
@@ -8,7 +14,11 @@ export class Container {
 
         let item: any = this.items[key];
 
-        return item(this);
+        if (!this.instanced.hasOwnProperty(key)) {
+            this.instanced[key] = item(this);
+        }
+
+        return this.instanced[key];
     }
 
     public set(key: string, val: any) {
